@@ -13,11 +13,15 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <include layout="@layout/auth_signup"/>
+            <include layout="@layout/page_auth_login"/>
+            <include layout="@layout/page_auth_signup"/>
+            <include layout="@layout/page_explore"/>
         </FrameLayout>
+
 
 
 
@@ -28,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:name="com.kaidi.fordrinking.NavigationDrawerFragment"
-            tools:layout="@layout/fragment_navigation_drawer"/>
+            tools:layout="@layout/drawer_before"/>
 
     </android.support.v4.widget.DrawerLayout>
 

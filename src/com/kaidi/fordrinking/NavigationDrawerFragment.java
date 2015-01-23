@@ -13,6 +13,6 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);
+                R.layout.drawer_before, container, false);
     }
 }

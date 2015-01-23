@@ -47,9 +47,12 @@ public class MainActivity extends ActionBarActivity {
 
 
     private DrawerLayout mDrawerLayout;
-    Toolbar mActionBarToolbar;
-    String appName;
-    String toolbarTitle;
+
+
+
+    private Toolbar mActionBarToolbar;
+    private String appName;
+    private String toolbarTitle;
     private ActionBarDrawerToggle mDrawerToggle;
 
     private HttpClient httpClient;
@@ -90,14 +93,9 @@ public class MainActivity extends ActionBarActivity {
 
         setupNavDrawer();
 
-        Typeface iconfont = Typeface.createFromAsset(getAssets(), "fontawesome.ttf");
-
-        Misc.setTextViewTypeface();
-
         InitDrawer.getInitDrawer(this);
 
     }
-
     protected Toolbar getActionBarToolbar() {
         if (mActionBarToolbar == null) {
             mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
@@ -140,18 +138,20 @@ public class MainActivity extends ActionBarActivity {
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 supportInvalidateOptionsMenu();
-                mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_open));
+                //mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_open));
             }
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-                mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_close));
+                mActionBarToolbar.setTitle("For Drinking");
             }
         };
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        mActionBarToolbar.setTitle("Explore");
     }
 
     private void setupUserAuth() {
@@ -253,5 +253,13 @@ public class MainActivity extends ActionBarActivity {
 
     public void setmDrawerLayout(DrawerLayout mDrawerLayout) {
         this.mDrawerLayout = mDrawerLayout;
+    }
+
+    public Toolbar getmActionBarToolbar() {
+        return mActionBarToolbar;
+    }
+
+    public void setmActionBarToolbar(Toolbar mActionBarToolbar) {
+        this.mActionBarToolbar = mActionBarToolbar;
     }
 }
