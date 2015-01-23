@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_primary_dark">#AAAAAA</color>
+    <color name="light_gray">#c2c7cc</color>
+    <color name="header_bar_blue_gray">#263238</color>
+    <color name="main_bg_blue_gray">#37474F</color>
+</resources>
