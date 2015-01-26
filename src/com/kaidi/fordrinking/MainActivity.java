@@ -1,13 +1,9 @@
 package com.kaidi.fordrinking;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -16,30 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-import com.kaidi.fordrinking.drawer.InitDrawer;
-import com.kaidi.fordrinking.util.Misc;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
+import com.kaidi.fordrinking.drawer.InitialDrawer;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-
-
+import static com.kaidi.fordrinking.util.Constants.*;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -47,6 +24,10 @@ public class MainActivity extends ActionBarActivity {
 
 
     private DrawerLayout mDrawerLayout;
+
+
+
+    private int mDrawerTab;
 
 
 
@@ -93,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
 
         setupNavDrawer();
 
-        InitDrawer.getInitDrawer(this);
+        InitialDrawer.getInitDrawer(this);
 
     }
     protected Toolbar getActionBarToolbar() {
@@ -108,7 +89,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void setupNavDrawer() {
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (mDrawerLayout == null) {
             return;
@@ -138,7 +118,29 @@ public class MainActivity extends ActionBarActivity {
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 supportInvalidateOptionsMenu();
-                //mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_open));
+                switch (mDrawerTab) {
+                    case DRAWER_LOGIN_STATE:
+                        mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_login));
+                        break;
+                    case DRAWER_SIGNUP_STATE:
+                        mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_signup));
+                        break;
+                    case DRAWER_EXPLORE_STATE:
+                        mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_explore));
+                        break;
+                    case DRAWER_HELP_STATE:
+                        mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_help));
+                        break;
+                    case DRAWER_SETTTINGS_STATE:
+                        mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_settings));
+                        break;
+                    case DRAWER_FEEDBACK_STATE:
+                        mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_feedback));
+                        break;
+                    default:
+                        mActionBarToolbar.setTitle(getResources().getString(R.string.drawer_default));
+                        break;
+                }
             }
 
             /** Called when a drawer has settled in a completely open state. */
@@ -261,5 +263,13 @@ public class MainActivity extends ActionBarActivity {
 
     public void setmActionBarToolbar(Toolbar mActionBarToolbar) {
         this.mActionBarToolbar = mActionBarToolbar;
+    }
+
+    public int getmDrawerTab() {
+        return mDrawerTab;
+    }
+
+    public void setmDrawerTab(int mDrawerTab) {
+        this.mDrawerTab = mDrawerTab;
     }
 }

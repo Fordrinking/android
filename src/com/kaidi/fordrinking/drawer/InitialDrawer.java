@@ -1,38 +1,36 @@
 package com.kaidi.fordrinking.drawer;
 
-import android.app.Activity;
-import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
+
+import static com.kaidi.fordrinking.util.Constants.*;
 
 /**
  * Author: kaidi
  * Date: 01/23, 2015
  */
-public class InitDrawer extends BasicDrawer {
+public class InitialDrawer extends BasicDrawer {
     private MainActivity activity;
 
-    private static InitDrawer initDrawer = null;
+    private static InitialDrawer initialDrawer = null;
 
-    private InitDrawer(MainActivity activity) {
+    private InitialDrawer(MainActivity activity) {
         this.activity = activity;
         InitDrawerAction();
         InitControls();
     }
 
-    public static synchronized InitDrawer getInitDrawer(MainActivity activity){
-        if(initDrawer == null){
-            initDrawer = new InitDrawer(activity);
+    public static synchronized InitialDrawer getInitDrawer(MainActivity activity){
+        if(initialDrawer == null){
+            initialDrawer = new InitialDrawer(activity);
         }
-        return initDrawer;
+        return initialDrawer;
     }
     
     private void InitDrawerAction() {
@@ -49,6 +47,7 @@ public class InitDrawer extends BasicDrawer {
                 activity.findViewById(R.id.page_auth_signup).setVisibility(View.GONE);
                 activity.findViewById(R.id.page_explore).setVisibility(View.GONE);
                 activity.getmDrawerLayout().closeDrawer(Gravity.START);
+                activity.setmDrawerTab(DRAWER_LOGIN_STATE);
                 toolbar.setTitle("Log in");
             }
         });
@@ -61,6 +60,7 @@ public class InitDrawer extends BasicDrawer {
                 activity.findViewById(R.id.page_auth_signup).setVisibility(View.VISIBLE);
                 activity.findViewById(R.id.page_explore).setVisibility(View.GONE);
                 activity.getmDrawerLayout().closeDrawer(Gravity.START);
+                activity.setmDrawerTab(DRAWER_SIGNUP_STATE);
                 toolbar.setTitle("Sign up");
             }
         });
@@ -73,6 +73,7 @@ public class InitDrawer extends BasicDrawer {
                 activity.findViewById(R.id.page_auth_signup).setVisibility(View.GONE);
                 activity.findViewById(R.id.page_explore).setVisibility(View.VISIBLE);
                 activity.getmDrawerLayout().closeDrawer(Gravity.START);
+                activity.setmDrawerTab(DRAWER_EXPLORE_STATE);
                 toolbar.setTitle("Explore");
             }
         });
