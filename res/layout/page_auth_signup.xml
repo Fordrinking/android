@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:visibility="gone"
+              android:visibility="visible"
               android:id="@+id/page_auth_signup">
 
     <LinearLayout android:layout_width="match_parent"
@@ -24,24 +24,30 @@
                   android:id="@+id/signup_email_input"
                   android:inputType="textEmailAddress"
                   android:layout_gravity="center_horizontal"
+                  android:background="@drawable/edit_text_bg"
                   android:padding="15dp"
                   android:layout_marginBottom="5dp"
-                  android:hint="Email"/>
+                  android:hint="Email"
+                  android:textColorHint="#ff8f8f8f"/>
         <EditText android:layout_width="300dp"
                   android:layout_height="wrap_content"
                   android:id="@+id/signup_username_input"
                   android:layout_gravity="center_horizontal"
+                  android:background="@drawable/edit_text_bg"
                   android:padding="15dp"
                   android:layout_marginBottom="5dp"
-                  android:hint="Username"/>
+                  android:hint="Username"
+                  android:textColorHint="#ff8f8f8f"/>
         <EditText android:layout_width="300dp"
                   android:layout_height="wrap_content"
                   android:id="@+id/signup_password_input"
                   android:inputType="textPassword"
                   android:layout_gravity="center_horizontal"
+                  android:background="@drawable/edit_text_bg"
                   android:padding="15dp"
                   android:layout_marginBottom="5dp"
-                  android:hint="Password"/>
+                  android:hint="Password"
+                  android:textColorHint="#ff8f8f8f"/>
 
         <Button android:layout_width="300dp"
                 android:layout_height="wrap_content"
