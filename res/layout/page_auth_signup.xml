@@ -3,36 +3,54 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:visibility="visible"
+              android:visibility="gone"
               android:id="@+id/page_auth_signup">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:orientation="vertical"
                   android:gravity="center_vertical">
+        <TextView android:layout_width="300dp"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/signup_error_prompt"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="18dp"
+                  android:textColor="#ff0000"
+                  android:gravity="center_horizontal"
+                  android:layout_marginBottom="5dp"/>
 
         <EditText android:layout_width="300dp"
                   android:layout_height="wrap_content"
+                  android:id="@+id/signup_email_input"
+                  android:inputType="textEmailAddress"
                   android:layout_gravity="center_horizontal"
+                  android:padding="15dp"
                   android:layout_marginBottom="5dp"
                   android:hint="Email"/>
         <EditText android:layout_width="300dp"
                   android:layout_height="wrap_content"
+                  android:id="@+id/signup_username_input"
                   android:layout_gravity="center_horizontal"
+                  android:padding="15dp"
                   android:layout_marginBottom="5dp"
                   android:hint="Username"/>
         <EditText android:layout_width="300dp"
                   android:layout_height="wrap_content"
+                  android:id="@+id/signup_password_input"
+                  android:inputType="textPassword"
                   android:layout_gravity="center_horizontal"
+                  android:padding="15dp"
                   android:layout_marginBottom="5dp"
                   android:hint="Password"/>
 
         <Button android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:id="@+id/signup_btn"
                 android:layout_gravity="center_horizontal"
                 android:background="#FF5151"
                 android:layout_marginTop="30dp"
-                android:text="Sign up"/>
+                android:text="Sign up"
+                android:textSize="18dp"/>
 
     </LinearLayout>
 

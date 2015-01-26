@@ -5,9 +5,33 @@
               android:layout_height="match_parent"
               android:visibility="gone"
               android:id="@+id/page_auth_login">
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="haah"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:gravity="center_vertical">
+
+        <EditText android:layout_width="300dp"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_horizontal"
+                  android:padding="15dp"
+                  android:layout_marginBottom="5dp"
+                  android:hint="Email"/>
+        <EditText android:layout_width="300dp"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center_horizontal"
+                  android:padding="15dp"
+                  android:layout_marginBottom="5dp"
+                  android:hint="Password"/>
+
+        <Button android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="#FF5151"
+                android:layout_marginTop="30dp"
+                android:text="Log in"
+                android:textSize="18dp"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
