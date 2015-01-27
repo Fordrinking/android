@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import com.kaidi.fordrinking.drawer.InitialDrawer;
+import com.kaidi.fordrinking.page.SignupPage;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -75,6 +76,8 @@ public class MainActivity extends ActionBarActivity {
         setupNavDrawer();
 
         InitialDrawer.getInitDrawer(this);
+
+        SignupPage.getSignupPage(this);
 
     }
     protected Toolbar getActionBarToolbar() {
