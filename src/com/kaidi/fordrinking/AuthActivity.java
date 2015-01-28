@@ -188,4 +188,6 @@ public class AuthActivity extends ActionBarActivity {
     public void setDrawerLayout(DrawerLayout drawerLayout) {
         this.drawerLayout = drawerLayout;
     }
+
+
 }
