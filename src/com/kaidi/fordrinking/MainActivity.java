@@ -11,9 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import com.kaidi.fordrinking.fragment.ExporeFragment;
-import com.kaidi.fordrinking.fragment.LoginFragment;
-import com.kaidi.fordrinking.fragment.SignupFragment;
+import com.kaidi.fordrinking.fragment.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -29,9 +27,9 @@ public class MainActivity extends ActionBarActivity {
     private int drawerTabState;
     private HttpClient httpClient;
 
-    private LoginFragment loginFragment;
-    private SignupFragment signupFragment;
+    private HomeFragment homeFragment;
     private ExporeFragment exporeFragment;
+    private MessageFragment messageFragment;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -41,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.activity_main);
 
         initUI();
         registerEvent();
@@ -69,7 +67,7 @@ public class MainActivity extends ActionBarActivity {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         exporeFragment = new ExporeFragment();
-        transaction.replace(R.id.auth_content, exporeFragment);
+        transaction.replace(R.id.main_content, exporeFragment);
         transaction.commit();
     }
 
@@ -86,14 +84,14 @@ public class MainActivity extends ActionBarActivity {
         public void onDrawerClosed(View view) {
             supportInvalidateOptionsMenu();
             switch (drawerTabState) {
-                case DRAWER_LOGIN_STATE:
-                    toolbar.setTitle(getResources().getString(R.string.drawer_login));
-                    break;
-                case DRAWER_SIGNUP_STATE:
-                    toolbar.setTitle(getResources().getString(R.string.drawer_signup));
+                case DRAWER_HOME_STATE:
+                    toolbar.setTitle(getResources().getString(R.string.drawer_home));
                     break;
                 case DRAWER_EXPLORE_STATE:
                     toolbar.setTitle(getResources().getString(R.string.drawer_explore));
+                    break;
+                case DRAWER_MESSAGE_STATE:
+                    toolbar.setTitle(getResources().getString(R.string.drawer_message));
                     break;
                 case DRAWER_HELP_STATE:
                     toolbar.setTitle(getResources().getString(R.string.drawer_help));
@@ -115,7 +113,6 @@ public class MainActivity extends ActionBarActivity {
             toolbar.setTitle("For Drinking");
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -141,5 +138,43 @@ public class MainActivity extends ActionBarActivity {
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    public int getDrawerTabState() {
+        return drawerTabState;
+    }
 
+    public void setDrawerTabState(int drawerTabState) {
+        this.drawerTabState = drawerTabState;
+    }
+
+    public HttpClient getHttpClient() {
+        return httpClient;
+    }
+
+    public void setHttpClient(HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
+
+    public HomeFragment getHomeFragment() {
+        return homeFragment;
+    }
+
+    public void setHomeFragment(HomeFragment homeFragment) {
+        this.homeFragment = homeFragment;
+    }
+
+    public ExporeFragment getExporeFragment() {
+        return exporeFragment;
+    }
+
+    public void setExporeFragment(ExporeFragment exporeFragment) {
+        this.exporeFragment = exporeFragment;
+    }
+
+    public MessageFragment getMessageFragment() {
+        return messageFragment;
+    }
+
+    public void setMessageFragment(MessageFragment messageFragment) {
+        this.messageFragment = messageFragment;
+    }
 }

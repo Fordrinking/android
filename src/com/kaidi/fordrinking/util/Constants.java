@@ -18,4 +18,6 @@ public class Constants {
     public static final int DRAWER_HELP_STATE      = 4;
     public static final int DRAWER_SETTTINGS_STATE = 5;
     public static final int DRAWER_FEEDBACK_STATE  = 6;
+    public static final int DRAWER_HOME_STATE      = 7;
+    public static final int DRAWER_MESSAGE_STATE   = 8;
 }
