@@ -17,5 +17,7 @@
     <string name="icon_signup">&#xf234;</string>
     <string name="icon_explore">&#xf0ac;</string>
 
+    <string name="url_signup">http://fordrinking.com/signup-check</string>
+
 
 </resources>

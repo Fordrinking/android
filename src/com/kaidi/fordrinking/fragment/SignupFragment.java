@@ -3,6 +3,7 @@ package com.kaidi.fordrinking.fragment;
 //import android.app.Fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.kaidi.fordrinking.AuthActivity;
+import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -197,7 +199,7 @@ public class SignupFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        HttpPost httpPost = new HttpPost("http://fordrinking.com/signup-check");
+                        HttpPost httpPost = new HttpPost(activity.getResources().getString(R.string.url_signup));
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("email", email));
                         params.add(new BasicNameValuePair("username", username));
@@ -207,12 +209,21 @@ public class SignupFragment extends Fragment {
                         if (httpResponse.getStatusLine().getStatusCode() == 200) {
                             String msg = EntityUtils.toString(httpResponse.getEntity());
                             Looper.prepare();
-                            Log.i("get", msg);
-                            //Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                            dealResponse(msg);
                             Looper.loop();
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                    }
+                }
+                private void dealResponse(String msg) {
+                    if (msg.equals("email-exist")) {
+                        Toast.makeText(activity, "Email exist, please Log in", Toast.LENGTH_SHORT).show();
+                    } else if (msg.equals("user-exist")) {
+                        Toast.makeText(activity, "Username exit, change another", Toast.LENGTH_SHORT).show();
+                    } else if (msg.equals("user-added")) {
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
                     }
                 }
             }.start();
