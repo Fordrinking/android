@@ -16,6 +16,9 @@
     <string name="icon_login">&#xf18e;</string>
     <string name="icon_signup">&#xf234;</string>
     <string name="icon_explore">&#xf0ac;</string>
+    <string name="icon_home">&#xf015;</string>
+    <string name="icon_message">&#xf0e0;</string>
+    <string name="icon_logout">&#xf235;</string>
 
     <string name="url_signup">http://fordrinking.com/signup-check</string>
     <string name="url_login">http://fordrinking.com/login-client</string>
