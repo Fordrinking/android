@@ -14,24 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <include layout="@layout/page_auth_login"/>
-            <include layout="@layout/page_auth_signup"/>
-            <include layout="@layout/page_explore"/>
-        </FrameLayout>
+        <FrameLayout android:id="@+id/auth_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
 
-
-
-
-
-        <fragment
-            android:id="@+id/navigation_drawer"
+        <fragment android:id="@+id/navigation_drawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:name="com.kaidi.fordrinking.NavigationDrawerFragment"
+            android:name="com.kaidi.fordrinking.fragment.AuthDrawerFragment"
             tools:layout="@layout/drawer_before"/>
 
     </android.support.v4.widget.DrawerLayout>

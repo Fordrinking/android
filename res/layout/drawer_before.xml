@@ -97,7 +97,4 @@
 
     <include layout="@layout/drawer_common"/>
 
-
-
-
 </LinearLayout>

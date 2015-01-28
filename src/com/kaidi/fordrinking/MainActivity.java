@@ -37,6 +37,8 @@ public class MainActivity extends ActionBarActivity {
     private String toolbarTitle;
     private ActionBarDrawerToggle mDrawerToggle;
 
+
+
     private HttpClient httpClient;
 
     Handler handler = new Handler() {
@@ -50,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_auth);
 
 
         final Resources resources = getResources();
@@ -274,5 +276,13 @@ public class MainActivity extends ActionBarActivity {
 
     public void setmDrawerTab(int mDrawerTab) {
         this.mDrawerTab = mDrawerTab;
+    }
+
+    public HttpClient getHttpClient() {
+        return httpClient;
+    }
+
+    public void setHttpClient(HttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 }
