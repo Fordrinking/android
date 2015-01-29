@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -12,7 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import com.kaidi.fordrinking.fragment.ExporeFragment;
+import com.kaidi.fordrinking.fragment.ExploreFragment;
 import com.kaidi.fordrinking.fragment.LoginFragment;
 import com.kaidi.fordrinking.fragment.SignupFragment;
 import org.apache.http.client.HttpClient;
@@ -31,7 +30,7 @@ public class AuthActivity extends ActionBarActivity {
 
     private LoginFragment loginFragment;
     private SignupFragment signupFragment;
-    private ExporeFragment exporeFragment;
+    private ExploreFragment exporeFragment;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -68,7 +67,7 @@ public class AuthActivity extends ActionBarActivity {
     private void setDefaultFragment() {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        exporeFragment = new ExporeFragment();
+        exporeFragment = new ExploreFragment();
         transaction.replace(R.id.auth_content, exporeFragment);
         transaction.commit();
     }
@@ -165,11 +164,11 @@ public class AuthActivity extends ActionBarActivity {
         this.signupFragment = signupFragment;
     }
 
-    public ExporeFragment getExporeFragment() {
+    public ExploreFragment getExporeFragment() {
         return exporeFragment;
     }
 
-    public void setExporeFragment(ExporeFragment exporeFragment) {
+    public void setExporeFragment(ExploreFragment exporeFragment) {
         this.exporeFragment = exporeFragment;
     }
 

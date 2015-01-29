@@ -11,7 +11,7 @@ import com.kaidi.fordrinking.R;
  * Author: kaidi
  * Date: 01/28, 2015
  */
-public class ExporeFragment extends Fragment {
+public class ExploreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

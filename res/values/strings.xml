@@ -25,5 +25,7 @@
     <string name="url_signup">http://drink.sinaapp.com/signup-check</string>
     <string name="url_login">http://drink.sinaapp.com/login-client</string>
 
+    <string name="auth_users_id">users_id</string>
+
 
 </resources>

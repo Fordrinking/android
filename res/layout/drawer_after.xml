@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:orientation="horizontal"
-            android:id="@+id/main_index_item"
+            android:id="@+id/main_home_item"
             android:padding="12dp"
             android:background="#ff43565e">
         <com.kaidi.fordrinking.view.IconFontView

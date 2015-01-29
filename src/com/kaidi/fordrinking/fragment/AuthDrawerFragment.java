@@ -74,7 +74,7 @@ public class AuthDrawerFragment extends Fragment {
 
                 case R.id.auth_explore_item:
                     if (activity.getExporeFragment() == null) {
-                        ExporeFragment exporeFragment = new ExporeFragment();
+                        ExploreFragment exporeFragment = new ExploreFragment();
                         activity.setExporeFragment(exporeFragment);
                     }
                     transaction.replace(R.id.auth_content, activity.getExporeFragment());

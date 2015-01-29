@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
     private HttpClient httpClient;
 
     private HomeFragment homeFragment;
-    private ExporeFragment exporeFragment;
+    private ExploreFragment exporeFragment;
     private MessageFragment messageFragment;
 
     private Toolbar toolbar;
@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
     private void setDefaultFragment() {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        exporeFragment = new ExporeFragment();
+        exporeFragment = new ExploreFragment();
         transaction.replace(R.id.main_content, exporeFragment);
         transaction.commit();
     }
@@ -162,11 +162,11 @@ public class MainActivity extends ActionBarActivity {
         this.homeFragment = homeFragment;
     }
 
-    public ExporeFragment getExporeFragment() {
+    public ExploreFragment getExporeFragment() {
         return exporeFragment;
     }
 
-    public void setExporeFragment(ExporeFragment exporeFragment) {
+    public void setExporeFragment(ExploreFragment exporeFragment) {
         this.exporeFragment = exporeFragment;
     }
 
@@ -176,5 +176,13 @@ public class MainActivity extends ActionBarActivity {
 
     public void setMessageFragment(MessageFragment messageFragment) {
         this.messageFragment = messageFragment;
+    }
+
+    public DrawerLayout getDrawerLayout() {
+        return drawerLayout;
+    }
+
+    public void setDrawerLayout(DrawerLayout drawerLayout) {
+        this.drawerLayout = drawerLayout;
     }
 }

@@ -1,7 +1,9 @@
 package com.kaidi.fordrinking.fragment;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
@@ -17,6 +19,8 @@ import android.widget.Toast;
 import com.kaidi.fordrinking.AuthActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
+import com.kaidi.fordrinking.model.User;
+import com.kaidi.fordrinking.util.JsonUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -25,6 +29,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,7 +160,19 @@ public class LoginFragment extends Fragment {
                         Toast.makeText(activity, "Mail Not Exist", Toast.LENGTH_SHORT).show();
                     } else if (msg.equals("wrong-password")) {
                         Toast.makeText(activity, "Wrong Password", Toast.LENGTH_SHORT).show();
-                    } else if(msg.equals("user-auth")) {
+                    } else  {
+                        User user = JsonUtil.parseUser(msg);
+
+                        String uidsKey = getActivity().getResources().getString(R.string.auth_users_id);
+
+                        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                        String uids = sharedPref.getString(uidsKey, "");
+                        uids += user.getUid() + ",";
+
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString(getString(R.string.auth_users_id), uids);
+                        editor.apply();
+
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
                     }
