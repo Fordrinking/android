@@ -15,9 +15,10 @@ public class StartActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String uidsKey = getResources().getString(R.string.auth_users_id);
+        String shareFileName = getResources().getString(R.string.share_preference_file);
+        SharedPreferences sharedPref = getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
 
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String uidsKey = getResources().getString(R.string.key_auth_uid);
         String uids = sharedPref.getString(uidsKey, "");
 
         Intent intent;

@@ -228,18 +228,21 @@ public class SignupFragment extends Fragment {
                     } else  {
                         User user = JsonUtil.parseUser(msg);
 
-                        String uidsKey = getActivity().getResources().getString(R.string.auth_users_id);
+                        String shareFileName = getResources().getString(R.string.share_preference_file);
+                        SharedPreferences sharedPref = getActivity().getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
 
-                        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                        String uidsKey = getResources().getString(R.string.key_auth_uid);
+
                         String uids = sharedPref.getString(uidsKey, "");
                         uids += user.getUid() + ",";
 
                         SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString(uidsKey, uids);
+                        editor.putString(getString(R.string.key_auth_uid), uids);
                         editor.apply();
 
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
+                        activity.finish();
                     }
                 }
             }.start();
