@@ -66,8 +66,8 @@ public class MainActivity extends ActionBarActivity {
     private void setDefaultFragment() {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        exporeFragment = new ExploreFragment();
-        transaction.replace(R.id.main_content, exporeFragment);
+        homeFragment = new HomeFragment();
+        transaction.replace(R.id.main_content, homeFragment);
         transaction.commit();
     }
 

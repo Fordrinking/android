@@ -77,9 +77,9 @@ public class MainDrawerFragment extends Fragment {
                         MessageFragment messageFragment = new MessageFragment();
                         activity.setMessageFragment(messageFragment);
                     }
-                    transaction.replace(R.id.auth_content, activity.getMessageFragment());
+                    transaction.replace(R.id.main_content, activity.getMessageFragment());
                     activity.getDrawerLayout().closeDrawer(Gravity.START);
-                    activity.setDrawerTabState(DRAWER_SIGNUP_STATE);
+                    activity.setDrawerTabState(DRAWER_MESSAGE_STATE);
                     break;
 
                 case R.id.main_explore_item:
@@ -87,7 +87,7 @@ public class MainDrawerFragment extends Fragment {
                         ExploreFragment exploreFragment = new ExploreFragment();
                         activity.setExporeFragment(exploreFragment);
                     }
-                    transaction.replace(R.id.auth_content, activity.getExporeFragment());
+                    transaction.replace(R.id.main_content, activity.getExporeFragment());
                     activity.getDrawerLayout().closeDrawer(Gravity.START);
                     activity.setDrawerTabState(DRAWER_EXPLORE_STATE);
                     break;
