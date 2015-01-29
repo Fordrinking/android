@@ -22,8 +22,8 @@
     <string name="icon_message">&#xf0e0;</string>
     <string name="icon_logout">&#xf235;</string>
 
-    <string name="url_signup">http://fordrinking.com/signup-check</string>
-    <string name="url_login">http://fordrinking.com/login-client</string>
+    <string name="url_signup">http://drink.sinaapp.com/signup-check</string>
+    <string name="url_login">http://drink.sinaapp.com/login-client</string>
 
 
 </resources>
