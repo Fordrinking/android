@@ -4,7 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import com.kaidi.fordrinking.model.User;
+import com.kaidi.fordrinking.model.UserManager;
+import com.kaidi.fordrinking.util.DBUtil;
+
+import static com.kaidi.fordrinking.util.Constants.*;
 
 /**
  * Author: kaidi
@@ -18,17 +25,32 @@ public class StartActivity extends Activity {
         String shareFileName = getResources().getString(R.string.share_preference_file);
         SharedPreferences sharedPref = getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
 
-        String uidsKey = getResources().getString(R.string.key_auth_uid);
-        String uids = sharedPref.getString(uidsKey, "");
+        boolean isInit = sharedPref.getBoolean("init-state", false);
+
+        if (isInit) {
+
+        } else {
+            DBUtil.InitDB(getApplication());
+
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean("init-state", true);
+            editor.apply();
+            Log.e("db", "success");
+        }
 
         Intent intent;
-        if (uids.equals("")) {
+        if (UserManager.users.size() == 0) {
             intent = new Intent(this, AuthActivity.class);
         } else {
             intent = new Intent(this, MainActivity.class);
         }
 
+
         startActivity(intent);
         finish();
     }
+
+
+
+
 }

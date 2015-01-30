@@ -23,6 +23,7 @@ import com.kaidi.fordrinking.AuthActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.model.User;
+import com.kaidi.fordrinking.model.UserManager;
 import com.kaidi.fordrinking.util.JsonUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -243,6 +244,8 @@ public class SignupFragment extends Fragment {
                         Intent intent = new Intent(activity, MainActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
+
+                        UserManager.addUser(user);
                     }
                 }
             }.start();

@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import com.kaidi.fordrinking.fragment.*;
+import com.kaidi.fordrinking.model.User;
+import com.kaidi.fordrinking.model.UserManager;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -35,6 +37,8 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
+    private User currentUser;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
         setDefaultFragment();
 
         httpClient = new DefaultHttpClient();
+        currentUser = UserManager.getCurrentUser(this);
     }
 
     private void initUI() {

@@ -20,7 +20,7 @@ public class JsonUtil {
             String username = jsonObject.getString("username");
             String avatar = jsonObject.getString("avatar");
 
-            user = new User(uid, username, email, avatar);
+            user = new User(uid, username, email, password, avatar);
 
             return user;
         } catch (JSONException e) {

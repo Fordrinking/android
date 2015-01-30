@@ -20,4 +20,14 @@ public class Constants {
     public static final int DRAWER_FEEDBACK_STATE  = 6;
     public static final int DRAWER_HOME_STATE      = 7;
     public static final int DRAWER_MESSAGE_STATE   = 8;
+
+    public static final String CREATE_USER_TABLE =
+            "CREATE TABLE IF NOT EXISTS fd_users (" +
+                "uid      int(11)      DEFAULT NULL," +
+                "username varchar(255) DEFAULT NULL," +
+                "password varchar(255) DEFAULT NULL," +
+                "email    varchar(255) DEFAULT NULL," +
+                "avatar   varchar(255) DEFAULT NULL)";
+
+
 }
