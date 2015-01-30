@@ -8,10 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
+import android.os.*;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -78,75 +75,57 @@ public class MainDrawerFragment extends Fragment {
     private void ShowUserInfo() {
         User currentUser = UserManager.getCurrentUser(getActivity());
 
+        //final int    uid       = currentUser.getUid();
         final String username  = currentUser.getUsername();
         final String avatarURL = currentUser.getAvatar();
 
         usernameView.setText(username);
 
-        final Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == 0x123) {
-                    try {
-                        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            File sdCardDir = Environment.getExternalStorageDirectory();
-                            FileInputStream fileInputStream = new FileInputStream(
-                                    sdCardDir.getCanonicalPath() + "/avatar.png");
-
-                            Bitmap bitmap =  BitmapFactory.decodeStream(fileInputStream);
-                            avatarImageView.setImageBitmap(bitmap);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+        String avatarPath = getActivity().getFilesDir().toString() + "/avatar.png";
+        File file = new File(avatarPath);
+        try {
+            if(file.exists()) {
+                FileInputStream fis = new FileInputStream(avatarPath);
+                Bitmap bitmap = BitmapFactory.decodeStream(fis);
+                avatarImageView.setImageBitmap(bitmap);
+            } else {
+                Log.e("network", "Get Avatar From Network");
+                new DownloadImageTask().execute(avatarURL);
             }
-        };
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(avatarURL);
-                    InputStream inputStream = url.openStream();
-                    if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                        File sdCardDir = Environment.getExternalStorageDirectory();
-
-                        Log.e("sdpath", sdCardDir.getCanonicalPath());
-                        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(
-                                sdCardDir.getCanonicalPath() + "/avatar.png"));
-
-                        byte[] buff = new byte[1024];
-                        int hasRead = 0;
-                        while ((hasRead = inputStream.read(buff)) > 0) {
-                            bos.write(buff, 0, hasRead);
-                        }
-
-                        inputStream.close();
-                        bos.close();
-
-                    } else {
-                        Toast.makeText(getActivity(), "Not sdcard", Toast.LENGTH_SHORT).show();
-                        /*OutputStream outputStream = getActivity().openFileOutput(username + uid + ".png",
-                                Context.MODE_WORLD_READABLE);
-                        byte[] buff = new byte[1024];
-                        int hasRead = 0;
-                        while ((hasRead = inputStream.read(buff)) > 0) {
-                            outputStream.write(buff, 0, hasRead);
-                        }
-                        inputStream.close();
-                        outputStream.close();*/
-                    }
-
-
-                    handler.sendEmptyMessage(0x123);
-                } catch (Exception e) {
-                    e.printStackTrace();
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        protected Bitmap doInBackground(String... urlStr) {
+            try {
+                URL url = new URL(urlStr[0]);
+                InputStream inputStream = url.openStream();
+                BufferedOutputStream bos = new BufferedOutputStream(
+                        getActivity().openFileOutput("avatar.png", Context.MODE_PRIVATE));
+                byte[] buff = new byte[1024];
+                int hasRead = 0;
+                while ((hasRead = inputStream.read(buff)) > 0) {
+                    bos.write(buff, 0, hasRead);
                 }
+                inputStream.close();
+
+                inputStream = url.openStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+                inputStream.close();
+                bos.close();
+                return bitmap;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }.start();
+            return null;
+        }
 
-
+        protected void onPostExecute(Bitmap result) {
+            avatarImageView.setImageBitmap(result);
+        }
     }
 
     private class MainItemClickListener implements View.OnClickListener {
