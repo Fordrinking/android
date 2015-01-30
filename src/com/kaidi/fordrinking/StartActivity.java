@@ -25,7 +25,7 @@ public class StartActivity extends Activity {
 
         String shareFileName         = getResources().getString(R.string.share_preference_file);
         SharedPreferences sharedPref = getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
-        boolean isInit               = sharedPref.getBoolean("init-state", false);
+        boolean isInit               = sharedPref.getBoolean(getResources().getString(R.string.share_pref_init_state), false);
 
         if (isInit) {
 
@@ -33,7 +33,7 @@ public class StartActivity extends Activity {
             DBUtil.InitDB();
 
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putBoolean("init-state", true);
+            editor.putBoolean(getResources().getString(R.string.share_pref_init_state), true);
             editor.apply();
         }
 

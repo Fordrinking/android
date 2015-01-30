@@ -185,15 +185,14 @@ public class MainDrawerFragment extends Fragment {
     private class LogoutItemClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
+            User currentUser = UserManager.getCurrentUser(getActivity());
+            UserManager.removeUser(currentUser);
+
             String shareFileName = getResources().getString(R.string.share_preference_file);
             SharedPreferences sharedPref = getActivity().getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
 
-            String uidsKey = getResources().getString(R.string.key_auth_uid);
-
-            String uids = "";
-
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString(uidsKey, uids);
+            editor.putInt(getResources().getString(R.string.share_pref_curr_uid), -1);
             editor.apply();
 
             Intent intent = new Intent(getActivity(), AuthActivity.class);

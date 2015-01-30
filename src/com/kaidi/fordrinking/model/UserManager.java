@@ -38,7 +38,7 @@ public class UserManager {
         String shareFileName = ctx.getResources().getString(R.string.share_preference_file);
         SharedPreferences sharedPref = ctx.getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
 
-        int uid = sharedPref.getInt("current-uid", -1);
+        int uid = sharedPref.getInt(ctx.getResources().getString(R.string.share_pref_curr_uid), -1);
         if (uid == -1) {
             return null;
         } else {
@@ -51,7 +51,7 @@ public class UserManager {
         SharedPreferences sharedPref = ctx.getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("current-uid", uid);
+        editor.putInt(ctx.getResources().getString(R.string.share_pref_curr_uid), uid);
         editor.apply();
     }
 }
