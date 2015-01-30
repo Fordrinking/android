@@ -17,8 +17,11 @@ public class DBUtil {
 
     private static SQLiteDatabase db = null;
 
-    public static void InitDB(Context ctx) {
+    public static void OpenOrCreateDb(Context ctx) {
         db = SQLiteDatabase.openOrCreateDatabase(ctx.getFilesDir().toString() + "/fd.db", null);
+    }
+
+    public static void InitDB() {
         db.execSQL(CREATE_USER_TABLE);
     }
 

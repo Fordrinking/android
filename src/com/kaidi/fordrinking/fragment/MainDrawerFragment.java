@@ -74,18 +74,10 @@ public class MainDrawerFragment extends Fragment {
     }
 
     private void ShowUserInfo() {
-        String shareFileName = getResources().getString(R.string.share_preference_file);
-        SharedPreferences sharedPref = getActivity().getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
+        User currentUser = UserManager.getCurrentUser(getActivity());
 
-        String uidsKey = getResources().getString(R.string.key_auth_uid);
-        String uids = sharedPref.getString(uidsKey, "");
-
-        final int uid = Integer.parseInt(uids.split(",")[0]);
-
-        User user = UserManager.getUser(uid);
-
-        final String username  = user.getUsername();
-        final String avatarURL = user.getAvatar();
+        final String username  = currentUser.getUsername();
+        final String avatarURL = currentUser.getAvatar();
 
         final Bitmap bitmap;
 

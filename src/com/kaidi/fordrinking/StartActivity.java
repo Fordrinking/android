@@ -21,30 +21,28 @@ public class StartActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DBUtil.OpenOrCreateDb(getApplication());
 
-        String shareFileName = getResources().getString(R.string.share_preference_file);
+        String shareFileName         = getResources().getString(R.string.share_preference_file);
         SharedPreferences sharedPref = getSharedPreferences(shareFileName, Context.MODE_PRIVATE);
-
-        boolean isInit = sharedPref.getBoolean("init-state", false);
+        boolean isInit               = sharedPref.getBoolean("init-state", false);
 
         if (isInit) {
 
         } else {
-            DBUtil.InitDB(getApplication());
+            DBUtil.InitDB();
 
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putBoolean("init-state", true);
             editor.apply();
-            Log.e("db", "success");
         }
 
         Intent intent;
-        if (UserManager.users.size() == 0) {
+        if (UserManager.getCurrentUser(getApplication()) == null) {
             intent = new Intent(this, AuthActivity.class);
         } else {
             intent = new Intent(this, MainActivity.class);
         }
-
 
         startActivity(intent);
         finish();
