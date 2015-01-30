@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.kaidi.fordrinking.AuthActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
@@ -79,17 +81,25 @@ public class MainDrawerFragment extends Fragment {
         final String username  = currentUser.getUsername();
         final String avatarURL = currentUser.getAvatar();
 
-        final Bitmap bitmap;
-
         usernameView.setText(username);
 
         final Handler handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == 0x123) {
-                   // avatarImageView.setImageResource();
-                }
+                    try {
+                        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                            File sdCardDir = Environment.getExternalStorageDirectory();
+                            FileInputStream fileInputStream = new FileInputStream(
+                                    sdCardDir.getCanonicalPath() + "/avatar.png");
 
+                            Bitmap bitmap =  BitmapFactory.decodeStream(fileInputStream);
+                            avatarImageView.setImageBitmap(bitmap);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         };
 
@@ -102,8 +112,9 @@ public class MainDrawerFragment extends Fragment {
                     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                         File sdCardDir = Environment.getExternalStorageDirectory();
 
+                        Log.e("sdpath", sdCardDir.getCanonicalPath());
                         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(
-                                sdCardDir.getCanonicalPath() + ""));
+                                sdCardDir.getCanonicalPath() + "/avatar.png"));
 
                         byte[] buff = new byte[1024];
                         int hasRead = 0;
@@ -115,6 +126,7 @@ public class MainDrawerFragment extends Fragment {
                         bos.close();
 
                     } else {
+                        Toast.makeText(getActivity(), "Not sdcard", Toast.LENGTH_SHORT).show();
                         /*OutputStream outputStream = getActivity().openFileOutput(username + uid + ".png",
                                 Context.MODE_WORLD_READABLE);
                         byte[] buff = new byte[1024];
