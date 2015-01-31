@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lollipop Samples</string>
+    <string name="toolbar_title">Toolbar with Navigation Drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_login">Log in</string>
+    <string name="drawer_signup">Sign up</string>
+    <string name="drawer_explore">Explore</string>
+    <string name="drawer_help">Help</string>
+    <string name="drawer_home">Home</string>
+    <string name="drawer_message">Message</string>
+    <string name="drawer_settings">Settings</string>
+    <string name="drawer_feedback">Send Feedback</string>
+    <string name="drawer_default">Default</string>
+
+    <string name="icon_login">&#xf18e;</string>
+    <string name="icon_signup">&#xf234;</string>
+    <string name="icon_explore">&#xf0ac;</string>
+    <string name="icon_home">&#xf015;</string>
+    <string name="icon_message">&#xf0e0;</string>
+    <string name="icon_logout">&#xf235;</string>
+
+    <string name="url_signup">http://drink.sinaapp.com/signup-client</string>
+    <string name="url_login">http://drink.sinaapp.com/login-client</string>
+
+    <string name="share_preference_file">com.kaidi.fordrinking.SharePreference</string>
+    <string name="share_pref_init_state">init-state</string>
+    <string name="share_pref_curr_uid">current-uid</string>
+
+
+
+
+</resources>

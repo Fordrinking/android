@@ -1,0 +1,9 @@
+.idea/
+bin/
+gen/
+ant.properties
+build.xml
+Fordrinking.iml
+local.properties
+proguard-project.txt
+project.properties

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/main_bg_blue_gray">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:paddingTop="8dp">
+        <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/image_gravatar"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp">
+        </ImageView>
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/text_username"
+                  android:layout_gravity="center"
+                  android:layout_marginLeft="24dp"
+                  android:textSize="18dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:id="@+id/main_home_item"
+            android:padding="12dp"
+            android:background="#ff43565e">
+        <com.kaidi.fordrinking.view.IconFontView
+                android:layout_width="54dp"
+                android:layout_height="match_parent"
+                android:text="@string/icon_home"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="8dp"
+                android:textSize="24dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="18dp"
+                />
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:id="@+id/main_explore_item"
+            android:padding="12dp">
+        <com.kaidi.fordrinking.view.IconFontView
+                android:layout_width="54dp"
+                android:layout_height="match_parent"
+                android:text="@string/icon_explore"
+                android:layout_marginLeft="8dp"
+                android:textSize="24dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Explore"
+                android:textSize="18dp"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:id="@+id/main_message_item"
+            android:padding="12dp">
+        <com.kaidi.fordrinking.view.IconFontView
+                android:layout_width="54dp"
+                android:layout_height="match_parent"
+                android:text="@string/icon_message"
+                android:layout_marginLeft="8dp"
+                android:textSize="24dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:textSize="18dp"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:orientation="horizontal"
+            android:id="@+id/main_logout_item"
+            android:padding="12dp">
+        <com.kaidi.fordrinking.view.IconFontView
+                android:layout_width="54dp"
+                android:layout_height="match_parent"
+                android:text="@string/icon_logout"
+                android:layout_marginLeft="8dp"
+                android:textSize="24dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:textSize="18dp"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#ff96aaab"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
+
+    </LinearLayout>
+
+    <include layout="@layout/drawer_common"/>
+
+</LinearLayout>
