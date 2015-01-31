@@ -1,7 +1,15 @@
+var appinterface = {
+	callFromActivity: function (msg){
+        document.getElementById("testbody").innerHTML = msg;
+    }
+};
+
 (function ($) {
 	function showAndroidToast() {
 		Android.showToast("hahafdasdf");
 	}
+
+
 
 	var app = {
 		init: function() {

@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.util.WebAppInterface;
@@ -51,9 +52,12 @@ public class HomeFragment extends Fragment {
         }
         blogWebView.loadUrl("file:///android_asset/home.html");
         blogWebView.setWebViewClient(new HelloWebViewClient ());
-        new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
+
 
         blogWebView.addJavascriptInterface(new WebAppInterface(getActivity()), "Android");
+
+
+        new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
     }
 
     private class HelloWebViewClient extends WebViewClient {
@@ -90,7 +94,9 @@ public class HomeFragment extends Fragment {
         }
 
         protected void onPostExecute(List<Map<String, Object>> listItems) {
-
+           // Toast.makeText(getActivity(), "Downloaded!", Toast.LENGTH_SHORT).show();
+            String a = "helefdsa";
+            blogWebView.loadUrl("javascript:appinterface.callFromActivity(\"" + a + "\")");
         }
     }
 }
