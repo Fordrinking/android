@@ -3,11 +3,55 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<<<<<<< HEAD
-
 
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="match_parent">
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical">
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="hello, Kaidi"
+                          android:textSize="60dp"/>
+            </LinearLayout>
+        </ScrollView>
 
 
         <RelativeLayout android:layout_width="56dp"
@@ -26,15 +70,10 @@
                        android:src="@drawable/ic_add_white_48dp"
                     />
         </RelativeLayout>
-
-
     </RelativeLayout>
-
-=======
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="Home"
               android:textSize="24dp"/>
->>>>>>> 60a8a17f2d20fda3e94ada372f2e37f1fab50939
 
 </LinearLayout>

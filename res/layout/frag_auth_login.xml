@@ -21,11 +21,7 @@
                   android:id="@+id/login_email_input"
                   android:layout_gravity="center_horizontal"
                   android:inputType="textEmailAddress"
-<<<<<<< HEAD
                   android:background="@drawable/input_bg"
-=======
-                  android:background="@drawable/edit_text_bg"
->>>>>>> 60a8a17f2d20fda3e94ada372f2e37f1fab50939
                   android:textColor="#222222"
                   android:padding="15dp"
                   android:layout_marginBottom="1dp"
@@ -36,11 +32,7 @@
                   android:id="@+id/login_password_input"
                   android:inputType="textPassword"
                   android:layout_gravity="center_horizontal"
-<<<<<<< HEAD
                   android:background="@drawable/input_bg"
-=======
-                  android:background="@drawable/edit_text_bg"
->>>>>>> 60a8a17f2d20fda3e94ada372f2e37f1fab50939
                   android:textColor="#222222"
                   android:padding="15dp"
                   android:layout_marginBottom="1dp"
