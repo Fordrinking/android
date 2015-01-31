@@ -18,6 +18,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.frag_main_home, container, false);
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 60a8a17f2d20fda3e94ada372f2e37f1fab50939
 }

@@ -3,6 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+<<<<<<< HEAD
 
 
     <RelativeLayout android:layout_width="match_parent"
@@ -29,5 +30,11 @@
 
     </RelativeLayout>
 
+=======
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Home"
+              android:textSize="24dp"/>
+>>>>>>> 60a8a17f2d20fda3e94ada372f2e37f1fab50939
 
 </LinearLayout>
