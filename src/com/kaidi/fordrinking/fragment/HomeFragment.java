@@ -4,9 +4,11 @@ import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ListView;
@@ -32,6 +34,8 @@ import java.util.Map;
 public class HomeFragment extends Fragment {
     private MainActivity activity;
     private WebView blogWebView;
+
+    private String jsonStr;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class HomeFragment extends Fragment {
         blogWebView.setWebViewClient(new HelloWebViewClient ());
 
 
-        blogWebView.addJavascriptInterface(new WebAppInterface(getActivity()), "Android");
+        blogWebView.addJavascriptInterface(this, "HomeFragment");
 
 
         new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
@@ -68,35 +72,26 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private class DownloadNewestBlogs extends AsyncTask<String, Void, List<Map<String, Object>>> {
-        protected List<Map<String, Object>> doInBackground(String... urlStr) {
+    private class DownloadNewestBlogs extends AsyncTask<String, Void, Void> {
+        protected Void doInBackground(String... urlStr) {
             try {
                 HttpGet httpGet = new HttpGet(urlStr[0]);
                 HttpResponse httpResponse = activity.getHttpClient().execute(httpGet);
                 if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                    String msg = EntityUtils.toString(httpResponse.getEntity());
-                    JSONArray jsonArray = new JSONArray(msg);
-                    List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        Map<String, Object> listItem = new HashMap<String, Object>();
-                        listItem.put("avatar", jsonArray.getJSONObject(i).getString("avatar"));
-                        listItem.put("username", jsonArray.getJSONObject(i).getString("username"));
-                        listItem.put("postdate", jsonArray.getJSONObject(i).getString("postdate"));
-                        listItem.put("content", jsonArray.getJSONObject(i).getString("content"));
-                        listItems.add(listItem);
-                    }
-                    return listItems;
+                    jsonStr = EntityUtils.toString(httpResponse.getEntity());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
         }
-
-        protected void onPostExecute(List<Map<String, Object>> listItems) {
-           // Toast.makeText(getActivity(), "Downloaded!", Toast.LENGTH_SHORT).show();
-            String a = "helefdsa";
-            blogWebView.loadUrl("javascript:appinterface.callFromActivity(\"" + a + "\")");
+        protected void onPostExecute(Void v) {
+            blogWebView.loadUrl("javascript:appinterface.getNewestBlog(HomeFragment.getBlogsData())");
         }
+    }
+
+    @JavascriptInterface
+    public String getBlogsData() {
+        return jsonStr;
     }
 }

@@ -1,25 +1,35 @@
 var appinterface = {
-	callFromActivity: function (msg){
-        document.getElementById("testbody").innerHTML = msg;
+	getNewestBlog: function (jsonStr){
+		var blogs = JSON.parse(jsonStr);
+		for (var i = 0; i < blogs.length; i++) {
+			var avatar = blogs[i].avatar;
+			var username = blogs[i].username;
+			var postdate = blogs[i].postdate;
+			var content = blogs[i].content;
+
+			var newHTMLs = [];
+			newHTMLs.push("<div class='blog-item'>");
+			newHTMLs.push("<div class='blog-title'>");
+			newHTMLs.push("<div class='blog-user'>");
+			newHTMLs.push("<img class='user-img left' src='" + avatar + "'/></div>");
+			newHTMLs.push("<div class='blog-info'>");
+			newHTMLs.push("<div class='blog-username'>" + username + "</div>");
+			newHTMLs.push("<div class='blog-date'>" + postdate + "</div>");
+			newHTMLs.push("</div>");
+			newHTMLs.push("<div class='blog-action'><i class='fa  fa-angle-down fa-lg'></i></div>");
+			newHTMLs.push("</div>");
+			newHTMLs.push("<div class='blog-body'>");
+			newHTMLs.push(content);
+			newHTMLs.push("</div>");
+			newHTMLs.push("<div class='blog-footer'>");
+			newHTMLs.push("<div class='blog-f-btn blog-repost-btn'><i class='fa fa-share-square-o fa-lg'></i>Repost</div>");
+			newHTMLs.push("<div class='blog-f-btn blog-comment-btn'><i class='fa fa-comment-o fa-lg'></i>Comment</div>");
+			newHTMLs.push("<div class='blog-f-btn blog-like-btn'><i class='fa fa-thumbs-o-up fa-lg'></i>Like</div>");
+			newHTMLs.push("</div>");
+			newHTMLs.push("</div>");
+
+			$(".blogs").append($(newHTMLs.join("\n")));
+		}
     }
 };
 
-(function ($) {
-	function showAndroidToast() {
-		Android.showToast("hahafdasdf");
-	}
-
-
-
-	var app = {
-		init: function() {
-			$("#btn").on("click", showAndroidToast);
-		},
-
-		run: function() {
-			this.init();
-		}
-	}
-
-	app.run();
-})(jQuery);

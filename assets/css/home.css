@@ -1,0 +1,104 @@
+.left {
+	float: left;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #37474F;
+}
+
+
+.blogs {
+}
+
+.blog-item {
+	background-color: #80CBC4;
+	margin-top: 12px;
+}
+
+.blog-title {
+	height: 48px;
+	padding: 0 12px;
+	position: relative;
+	color: #515151;
+}
+
+.blog-user {
+	float: left;
+	margin: 12px;
+}
+
+.user-img {
+	width: 24px;
+	height: 24px;
+}
+
+.blog-info {
+	float: left;
+	margin: 6px 0;
+	font-size: 18px;
+}
+
+.blog-action {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+}
+
+.blog-username {
+
+}
+
+.blog-date {
+
+}
+
+.blog-body {
+
+}
+
+.blog-img {
+	max-width: 100%;
+}
+
+.blog-body iframe {
+	width: 100%;
+	height: 320px;
+}
+
+.blog-body-t {
+	padding: 12px;
+	color: #515151;
+}
+
+.blog-footer {
+	background-color: #006A79;
+	height: 40px;
+}
+
+.blog-f-btn {
+	width: 33%;
+	text-align: center;
+	margin: 12px 0;
+	color: #D8E0E4;
+	font-size: 14px;
+}
+
+.blog-f-btn .fa {
+	margin-right: 8px;
+}
+
+.blog-repost-btn {
+    float: left;
+    border-right: 1px solid #969696;
+}
+
+.blog-comment-btn {
+    float: left;
+    border-right: 1px solid #969696;
+}
+
+.blog-like-btn {
+	float: right;
+}
