@@ -1,79 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+    <WebView android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/home_blog_webview">
+    </WebView>
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical">
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-                <TextView android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="hello, Kaidi"
-                          android:textSize="60dp"/>
-            </LinearLayout>
-        </ScrollView>
+    <ImageButton
+            android:id="@+id/home_add_btn"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:tint="@android:color/white"
+            android:background="@drawable/add_btn_bg"
+            android:elevation="@dimen/elevation_low"
+            android:src="@android:drawable/ic_input_add"/>
 
-
-        <RelativeLayout android:layout_width="56dp"
-                      android:layout_height="56dp"
-                      android:id="@+id/main_add_btn"
-                      android:background="@drawable/add_btn_bg"
-                      android:layout_alignParentEnd="true"
-                      android:layout_alignParentRight="true"
-                      android:layout_alignParentBottom="true"
-                      android:layout_marginEnd="20dp"
-                      android:layout_marginRight="20dp"
-                      android:layout_marginBottom="20dp">
-            <ImageView android:layout_width="32dp"
-                       android:layout_height="32dp"
-                       android:layout_centerInParent="true"
-                       android:src="@drawable/ic_add_white_48dp"
-                    />
-        </RelativeLayout>
-    </RelativeLayout>
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Home"
-              android:textSize="24dp"/>
-
-</LinearLayout>
+</FrameLayout>
