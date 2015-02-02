@@ -1,7 +1,10 @@
 package com.kaidi.fordrinking.fragment;
 
+import android.app.ActivityOptions;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.*;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +14,13 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ScrollView;
 import android.widget.Toast;
+import com.kaidi.fordrinking.AddActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
+import com.melnykov.fab.FloatingActionButton;
+import com.melnykov.fab.ObservableScrollView;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
@@ -25,7 +32,9 @@ import org.apache.http.util.EntityUtils;
 public class HomeFragment extends Fragment {
     private MainActivity activity;
     private WebView blogWebView;
+    private ObservableScrollView blogContainerView;
     private SwipeRefreshLayout swipeLayout;
+    private FloatingActionButton addFabBtn;
 
     private String jsonStr;
 
@@ -50,6 +59,23 @@ public class HomeFragment extends Fragment {
                 }
             }
         };
+
+        blogContainerView = (ObservableScrollView)getActivity().findViewById(R.id.home_blog_container);
+        addFabBtn = (FloatingActionButton)getActivity().findViewById(R.id.home_add_btn);
+        addFabBtn.attachToScrollView(blogContainerView);
+        addFabBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddActivity.class);
+                // create the transition animation - the images in the layouts
+                // of both activities are defined with android:transitionName="robot"
+                /*ActivityOptionsCompat options = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(getActivity(), addFabBtn, "robot");
+                startActivity(intent, options.toBundle());*/
+               // startActivityForResult(intent, 0x222);
+                startActivity(intent);
+            }
+        });
 
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_container);
