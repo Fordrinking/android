@@ -3,17 +3,23 @@ package com.kaidi.fordrinking;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.fragment.*;
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 
 /**
  * Created by kaidi on 15-2-2.
  */
-public class AddContentActivity extends Activity {
+public class AddContentActivity extends SwipeBackActivity {
 
     private AddBlogFragment addBlogFragment;
     private AddPhotoFragment addPhotoFragment;
@@ -21,11 +27,42 @@ public class AddContentActivity extends Activity {
     private AddVideoFragment addVideoFragment;
     private AddMessageFragment addMessageFragment;
     private AddPollFragment addPollFragment;
+
+    private int[] mBgColors;
+
+    private static int mBgIndex = 0;
+
+    private String mKeyTrackingMode;
+
+    private RadioGroup mTrackingModeGroup;
+
+    private SwipeBackLayout mSwipeBackLayout;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcontent);
+
+
+        mSwipeBackLayout = getSwipeBackLayout();
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        mSwipeBackLayout.addSwipeListener(new SwipeBackLayout.SwipeListener() {
+            @Override
+            public void onScrollStateChange(int state, float scrollPercent) {
+
+            }
+
+            @Override
+            public void onEdgeTouch(int edgeFlag) {
+            }
+
+            @Override
+            public void onScrollOverThreshold() {
+            }
+        });
+
+
+
 
         FragmentManager fm = getFragmentManager();
         // 开启Fragment事务

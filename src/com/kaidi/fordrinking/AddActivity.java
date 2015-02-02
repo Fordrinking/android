@@ -41,9 +41,6 @@ public class AddActivity extends Activity {
         quitAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //Intent intent = new Intent(AddActivity.this, MainActivity.class);
-                //startActivity(intent);
                 finish();
             }
         });

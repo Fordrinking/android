@@ -2,6 +2,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="ToolbarTitle" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
@@ -12,5 +13,12 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@drawable/shadow_left</item>
+        <item name="shadow_right">@drawable/shadow_right</item>
+        <item name="shadow_bottom">@drawable/shadow_bottom</item>
     </style>
 </resources>

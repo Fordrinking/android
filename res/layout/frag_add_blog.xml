@@ -7,6 +7,11 @@
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
             android:text="add blog"/>
+    <Button android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_blog_test_btn"
+            android:text="test"/>
+
 
 
 </LinearLayout>

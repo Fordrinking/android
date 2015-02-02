@@ -14,6 +14,7 @@ import android.view.View;
 import com.kaidi.fordrinking.fragment.*;
 import com.kaidi.fordrinking.model.User;
 import com.kaidi.fordrinking.model.UserManager;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
