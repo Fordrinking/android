@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <integer-array name="google_colors">
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+    </integer-array>
+
     <string name="app_name">Lollipop Samples</string>
     <string name="toolbar_title">Toolbar with Navigation Drawer</string>
     <string name="drawer_open">Open navigation drawer</string>

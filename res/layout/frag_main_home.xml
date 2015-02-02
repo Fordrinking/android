@@ -2,10 +2,32 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="match_parent">
-    <WebView android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:id="@+id/home_blog_webview">
-    </WebView>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/home_blog_container">
+            <WebView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/home_blog_webview"
+                    android:scrollbars="none">
+            </WebView>
+        </ScrollView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+
+    <!-- -->
 
     <ImageButton
             android:id="@+id/home_add_btn"

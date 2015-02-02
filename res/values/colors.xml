@@ -4,4 +4,9 @@
     <color name="light_gray">#c2c7cc</color>
     <color name="header_bar_blue_gray">#263238</color>
     <color name="main_bg_blue_gray">#37474F</color>
+
+    <color name="red">#FFC93437</color>
+    <color name="blue">#FF375BF1</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="green">#FF34A350</color>
 </resources>

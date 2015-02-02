@@ -22,9 +22,9 @@ var appinterface = {
 			newHTMLs.push(content);
 			newHTMLs.push("</div>");
 			newHTMLs.push("<div class='blog-footer'>");
-			newHTMLs.push("<div class='blog-f-btn blog-repost-btn'><i class='fa fa-share-square-o fa-lg'></i>Repost</div>");
-			newHTMLs.push("<div class='blog-f-btn blog-comment-btn'><i class='fa fa-comment-o fa-lg'></i>Comment</div>");
-			newHTMLs.push("<div class='blog-f-btn blog-like-btn'><i class='fa fa-thumbs-o-up fa-lg'></i>Like</div>");
+			newHTMLs.push("<div class='blog-f-btn blog-repost-btn'><i class='fa fa-share-square-o fa-lg'></i>3</div>");
+			newHTMLs.push("<div class='blog-f-btn blog-comment-btn'><i class='fa fa-comment-o fa-lg'></i>12</div>");
+			newHTMLs.push("<div class='blog-f-btn blog-like-btn'><i class='fa fa-thumbs-o-up fa-lg'></i>8</div>");
 			newHTMLs.push("</div>");
 			newHTMLs.push("</div>");
 

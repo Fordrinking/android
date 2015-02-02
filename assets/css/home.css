@@ -10,6 +10,9 @@ body {
 
 
 .blogs {
+    width: 94%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .blog-item {
@@ -26,18 +29,20 @@ body {
 
 .blog-user {
 	float: left;
-	margin: 12px;
+	margin: 6px 18px 6px 3px;
+
 }
 
 .user-img {
-	width: 24px;
-	height: 24px;
+	width: 36px;
+	height: 36px;
 }
 
 .blog-info {
 	float: left;
 	margin: 6px 0;
-	font-size: 18px;
+
+
 }
 
 .blog-action {
@@ -47,15 +52,17 @@ body {
 }
 
 .blog-username {
-
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .blog-date {
-
+    margin-top:4px;
+    font-size: 14px;
 }
 
 .blog-body {
-
+    font-size: 18px;
 }
 
 .blog-img {
@@ -87,6 +94,7 @@ body {
 
 .blog-f-btn .fa {
 	margin-right: 8px;
+	font-size: 16px;
 }
 
 .blog-repost-btn {

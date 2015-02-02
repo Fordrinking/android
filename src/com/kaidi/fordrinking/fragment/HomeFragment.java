@@ -4,28 +4,20 @@ import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
-import com.kaidi.fordrinking.util.WebAppInterface;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Author: kaidi
@@ -34,6 +26,7 @@ import java.util.Map;
 public class HomeFragment extends Fragment {
     private MainActivity activity;
     private WebView blogWebView;
+    private SwipeRefreshLayout swipeLayout;
 
     private String jsonStr;
     @Override
@@ -48,8 +41,16 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         activity = (MainActivity) getActivity();
 
-        blogWebView = (WebView) getActivity().findViewById(R.id.home_blog_webview);
 
+        swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(new SwipeLayoutListener());
+        swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
+        blogWebView = (WebView) getActivity().findViewById(R.id.home_blog_webview);
         blogWebView.getSettings().setJavaScriptEnabled(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
@@ -59,9 +60,27 @@ public class HomeFragment extends Fragment {
 
 
         blogWebView.addJavascriptInterface(this, "HomeFragment");
+        blogWebView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return (event.getAction() == MotionEvent.ACTION_MOVE);
+            }
+        });
 
 
         new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
+    }
+
+    private class SwipeLayoutListener implements SwipeRefreshLayout.OnRefreshListener {
+
+        @Override
+        public void onRefresh() {
+            new Handler().postDelayed(new Runnable() {
+                @Override public void run() {
+                    swipeLayout.setRefreshing(false);
+                }
+            }, 5000);
+        }
     }
 
     private class HelloWebViewClient extends WebViewClient {
