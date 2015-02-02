@@ -8,7 +8,7 @@
         <item>@color/green</item>
     </integer-array>
 
-    <string name="app_name">Lollipop Samples</string>
+    <string name="app_name">Fordrinking</string>
     <string name="toolbar_title">Toolbar with Navigation Drawer</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

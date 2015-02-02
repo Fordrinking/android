@@ -14,6 +14,42 @@
     <color name="add_btn_accent">#ff1ccf74</color>
     <color name="add_btn_accent_pressed">#ff1ba251</color>
 
+    <color name="new_blog_btn_primary">#263238</color>
+    <color name="new_blog_btn_primary_pressed">#37474F</color>
+    <color name="new_blog_btn_ripple">#ffebff3f</color>
+    <color name="new_blog_btn_accent">#ffc1d536</color>
+    <color name="new_blog_btn_accent_pressed">#ff8ea126</color>
+
+    <color name="new_photo_btn_primary">#263238</color>
+    <color name="new_photo_btn_primary_pressed">#37474F</color>
+    <color name="new_photo_btn_ripple">#ffff5533</color>
+    <color name="new_photo_btn_accent">#ffd4472f</color>
+    <color name="new_photo_btn_accent_pressed">#ff973428</color>
+
+    <color name="new_sound_btn_primary">#263238</color>
+    <color name="new_sound_btn_primary_pressed">#37474F</color>
+    <color name="new_sound_btn_ripple">#ffff36e7</color>
+    <color name="new_sound_btn_accent">#ffd131b9</color>
+    <color name="new_sound_btn_accent_pressed">#ffa1288a</color>
+
+    <color name="new_video_btn_primary">#263238</color>
+    <color name="new_video_btn_primary_pressed">#37474F</color>
+    <color name="new_video_btn_ripple">#ff4531ff</color>
+    <color name="new_video_btn_accent">#ff392cd1</color>
+    <color name="new_video_btn_accent_pressed">#ff262493</color>
+
+    <color name="new_message_btn_primary">#263238</color>
+    <color name="new_message_btn_primary_pressed">#37474F</color>
+    <color name="new_message_btn_ripple">#ff2dddff</color>
+    <color name="new_message_btn_accent">#ff2aaacc</color>
+    <color name="new_message_btn_accent_pressed">#ff227d98</color>
+
+    <color name="new_poll_btn_primary">#263238</color>
+    <color name="new_poll_btn_primary_pressed">#37474F</color>
+    <color name="new_poll_btn_ripple">#ff2aff45</color>
+    <color name="new_poll_btn_accent">#ff26d93b</color>
+    <color name="new_poll_btn_accent_pressed">#ff1fa02a</color>
+
     <color name="red">#FFC93437</color>
     <color name="blue">#FF375BF1</color>
     <color name="yellow">#FFF7D23E</color>

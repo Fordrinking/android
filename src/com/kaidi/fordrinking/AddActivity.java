@@ -53,6 +53,7 @@ public class AddActivity extends Activity {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(AddActivity.this, AddContentActivity.class);
+            intent.putExtra("viewID", view.getId());
             startActivity(intent);
             finish();
         }

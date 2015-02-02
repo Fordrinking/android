@@ -39,12 +39,14 @@ import com.nineoldandroids.view.ViewPropertyAnimator;
 public class FloatingActionButton extends ImageButton {
     private static final int TRANSLATE_DURATION_MILLIS = 200;
 
-    @IntDef({TYPE_NORMAL, TYPE_MINI})
+    @IntDef({TYPE_NORMAL, TYPE_MINI, TYPE_BIG, TYPE_EXTRA_BIG})
     public @interface TYPE {
     }
 
     public static final int TYPE_NORMAL = 0;
     public static final int TYPE_MINI = 1;
+    public static final int TYPE_BIG = 2;
+    public static final int TYPE_EXTRA_BIG = 3;
 
     private boolean mVisible;
 
@@ -79,8 +81,25 @@ public class FloatingActionButton extends ImageButton {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int size = getDimension(
-            mType == TYPE_NORMAL ? R.dimen.fab_size_normal : R.dimen.fab_size_mini);
+        int size;
+        switch (mType) {
+            case TYPE_NORMAL:
+                size = getDimension(R.dimen.fab_size_normal);
+                break;
+            case TYPE_MINI:
+                size = getDimension(R.dimen.fab_size_mini);
+                break;
+            case TYPE_BIG:
+                size = getDimension(R.dimen.fab_size_big);
+                break;
+            case TYPE_EXTRA_BIG:
+                size = getDimension(R.dimen.fab_size_extra_big);
+                break;
+            default:
+                size = getDimension(R.dimen.fab_size_normal);
+                break;
+        }
+
         if (mShadow && !hasLollipopApi()) {
             size += mShadowSize * 2;
             setMarginsWithoutShadow();
@@ -189,7 +208,25 @@ public class FloatingActionButton extends ImageButton {
             setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
-                    int size = getDimension(mType == TYPE_NORMAL ? R.dimen.fab_size_normal : R.dimen.fab_size_mini);
+                    int size;
+                    switch (mType) {
+                        case TYPE_NORMAL:
+                            size = getDimension(R.dimen.fab_size_normal);
+                            break;
+                        case TYPE_MINI:
+                            size = getDimension(R.dimen.fab_size_mini);
+                            break;
+                        case TYPE_BIG:
+                            size = getDimension(R.dimen.fab_size_big);
+                            break;
+                        case TYPE_EXTRA_BIG:
+                            size = getDimension(R.dimen.fab_size_extra_big);
+                            break;
+                        default:
+                            size = getDimension(R.dimen.fab_size_normal);
+                            break;
+                    }
+                   // int size = getDimension(mType == TYPE_NORMAL ? R.dimen.fab_size_normal : R.dimen.fab_size_mini);
                     outline.setOval(0, 0, size, size);
                 }
             });

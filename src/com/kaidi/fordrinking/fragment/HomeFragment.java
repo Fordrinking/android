@@ -72,7 +72,6 @@ public class HomeFragment extends Fragment {
                 /*ActivityOptionsCompat options = ActivityOptionsCompat
                         .makeSceneTransitionAnimation(getActivity(), addFabBtn, "robot");
                 startActivity(intent, options.toBundle());*/
-               // startActivityForResult(intent, 0x222);
                 startActivity(intent);
             }
         });
