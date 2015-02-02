@@ -5,6 +5,15 @@
     <color name="header_bar_blue_gray">#263238</color>
     <color name="main_bg_blue_gray">#37474F</color>
 
+    <color name="material_blue_500">#5677fc</color>
+    <color name="material_blue_600">#4e6cef</color>
+
+    <color name="add_btn_primary">#263238</color>
+    <color name="add_btn_primary_pressed">#37474F</color>
+    <color name="add_btn_ripple">#ff1eff92</color>
+    <color name="add_btn_accent">#ff1ccf74</color>
+    <color name="add_btn_accent_pressed">#ff1ba251</color>
+
     <color name="red">#FFC93437</color>
     <color name="blue">#FF375BF1</color>
     <color name="yellow">#FFF7D23E</color>

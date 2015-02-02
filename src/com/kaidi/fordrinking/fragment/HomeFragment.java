@@ -1,11 +1,9 @@
 package com.kaidi.fordrinking.fragment;
 
 import android.app.Fragment;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
+import android.os.*;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +11,7 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
 import org.apache.http.HttpResponse;
@@ -29,6 +28,8 @@ public class HomeFragment extends Fragment {
     private SwipeRefreshLayout swipeLayout;
 
     private String jsonStr;
+
+    private Handler handler;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +41,15 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         activity = (MainActivity) getActivity();
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                if (msg.what == 0x123) {
+                    swipeLayout.setRefreshing(false);
+                }
+            }
+        };
 
 
         swipeLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_container);
@@ -75,11 +85,16 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onRefresh() {
-            new Handler().postDelayed(new Runnable() {
-                @Override public void run() {
+            new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
+
+            swipeLayout.setRefreshing(true);
+            (new Handler()).postDelayed(new Runnable() {
+                @Override
+                public void run() {
                     swipeLayout.setRefreshing(false);
+
                 }
-            }, 5000);
+            }, 3000);
         }
     }
 
@@ -109,8 +124,24 @@ public class HomeFragment extends Fragment {
         }
     }
 
+
+
+
     @JavascriptInterface
     public String getBlogsData() {
         return jsonStr;
+    }
+
+    @JavascriptInterface
+    public void sendRefreshStopCode() {
+        handler.sendEmptyMessage(0x123);
+    }
+
+    public SwipeRefreshLayout getSwipeLayout() {
+        return swipeLayout;
+    }
+
+    public void setSwipeLayout(SwipeRefreshLayout swipeLayout) {
+        this.swipeLayout = swipeLayout;
     }
 }

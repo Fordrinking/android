@@ -1,5 +1,6 @@
 var appinterface = {
 	getNewestBlog: function (jsonStr){
+	    $(".blogs").empty();
 		var blogs = JSON.parse(jsonStr);
 		for (var i = 0; i < blogs.length; i++) {
 			var avatar = blogs[i].avatar;
@@ -30,6 +31,7 @@ var appinterface = {
 
 			$(".blogs").append($(newHTMLs.join("\n")));
 		}
+		HomeFragment.sendRefreshStopCode();
     }
 };
 
