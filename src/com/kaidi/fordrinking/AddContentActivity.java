@@ -9,13 +9,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.fragment.*;
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 
 /**
@@ -32,6 +31,7 @@ public class AddContentActivity extends ActionBarActivity {
 
     private Toolbar toolbar;
 
+    private HttpClient httpClient;
     private int fragmentID = -1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,9 @@ public class AddContentActivity extends ActionBarActivity {
         toolbar.setOnMenuItemClickListener(onMenuItemClick);
 
         initFragUI();
+
+        httpClient = new DefaultHttpClient();
+
     }
 
     private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
@@ -158,5 +161,13 @@ public class AddContentActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_addcontent, menu);
         return true;
+    }
+
+    public HttpClient getHttpClient() {
+        return httpClient;
+    }
+
+    public void setHttpClient(HttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 }

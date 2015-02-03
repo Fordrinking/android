@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import com.kaidi.fordrinking.R;
 
 /**
@@ -26,6 +27,6 @@ public class AddPhotoFragment extends Fragment implements AddContent {
 
     @Override
     public void send() {
-
+        Toast.makeText(getActivity(), "Add Photo", Toast.LENGTH_SHORT).show();
     }
 }

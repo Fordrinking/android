@@ -32,6 +32,14 @@ var appinterface = {
 			$(".blogs").append($(newHTMLs.join("\n")));
 		}
 		HomeFragment.sendRefreshStopCode();
+    },
+
+    addNewPostBlog: function () {
+        console.log("test");
+        var newBlog = HomeFragment.getNewPostBlog();
+        console.log(newBlog);
+    	$(".blogs").prepend($(newBlog));
+    	HomeFragment.clearNewPostBlog();
     }
 };
 

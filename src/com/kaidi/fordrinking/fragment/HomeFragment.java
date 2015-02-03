@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.kaidi.fordrinking.AddActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
+import com.kaidi.fordrinking.util.DataShare;
 import com.melnykov.fab.FloatingActionButton;
 import com.melnykov.fab.ObservableScrollView;
 import org.apache.http.HttpResponse;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
     private FloatingActionButton addFabBtn;
 
     private String jsonStr;
+    private String newPostBlog;
 
     private Handler handler;
     @Override
@@ -106,6 +108,15 @@ public class HomeFragment extends Fragment {
         new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        newPostBlog = (String)DataShare.getInstance().retrieve("newPostBlog");
+        if (newPostBlog != null) {
+            blogWebView.loadUrl("javascript:appinterface.addNewPostBlog()");
+        }
+    }
+
     private class SwipeLayoutListener implements SwipeRefreshLayout.OnRefreshListener {
 
         @Override
@@ -158,8 +169,19 @@ public class HomeFragment extends Fragment {
     }
 
     @JavascriptInterface
+    public String getNewPostBlog() {
+        return newPostBlog;
+    }
+
+    @JavascriptInterface
     public void sendRefreshStopCode() {
         handler.sendEmptyMessage(0x123);
+    }
+
+    @JavascriptInterface
+    public void clearNewPostBlog() {
+        newPostBlog = "";
+        DataShare.getInstance().save("newPostBlog", newPostBlog);
     }
 
     public SwipeRefreshLayout getSwipeLayout() {
