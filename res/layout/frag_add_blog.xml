@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/main_bg_blue_gray"
               >
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -33,21 +34,43 @@
                   android:hint="Body"/>
     </RelativeLayout>
 
-    <RelativeLayout android:layout_width="match_parent"
+    <LinearLayout android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:id="@+id/add_blog_footer"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/main_bg_blue_gray">
-        <ImageButton android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"/>
-        <ImageButton android:layout_width="wrap_content"
+                    android:background="@color/header_bar_blue_gray">
+        <ImageButton android:layout_width="0dp"
                      android:layout_height="wrap_content"
-                     android:id="@+id/add_blog_at_btn"
-                     android:layout_alignParentEnd="true"
-                     android:layout_alignParentRight="true"/>
-        <ImageButton android:layout_width="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:src="@drawable/ic_location_on_white_24dp"
+                     android:background="@color/transparent"/>
+        <ImageButton android:layout_width="0dp"
                      android:layout_height="wrap_content"
-                     android:layout_toLeftOf="@+id/add_blog_at_btn"
-                     android:layout_toStartOf="@+id/add_blog_at_btn"/>
-    </RelativeLayout>
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:background="@color/transparent"
+                     android:src="@drawable/ic_insert_photo_white_24dp"/>
+        <ImageButton android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:background="@color/transparent"
+                     android:src="@drawable/ic_turned_in_white_24dp"
+                     />
+        <ImageButton android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:gravity="center"
+                     android:background="@color/transparent"
+                     android:src="@drawable/at_simbol"
+                     />
+        <ImageButton android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:background="@color/transparent"
+                     android:src="@drawable/ic_tag_faces_white_24dp"/>
+    </LinearLayout>
 </RelativeLayout>
