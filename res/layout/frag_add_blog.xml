@@ -14,7 +14,6 @@
         <EditText android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:id="@+id/add_blog_title"
-                  android:inputType="textCapWords"
                   android:textStyle="bold"
                   android:hint="Title (optional)"/>
     </RelativeLayout>
@@ -29,7 +28,6 @@
         <EditText android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:id="@+id/add_blog_content"
-                  android:inputType="textMultiLine"
                   android:gravity="top"
                   android:hint="Body"/>
     </RelativeLayout>

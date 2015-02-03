@@ -1,6 +1,8 @@
 package com.kaidi.fordrinking.fragment;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
@@ -54,7 +56,19 @@ public class AddBlogFragment extends Fragment implements AddContent {
 
     @Override
     public void send() {
-        new SendBlogs().execute(getResources().getString(R.string.url_post_blog));
+        String content = bodyView.getText().toString().trim();
+        if (content.equals("")) {
+            new AlertDialog.Builder(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT)
+                    .setMessage("Please write your blog!")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .show();
+        } else {
+            new SendBlogs().execute(getResources().getString(R.string.url_post_blog));
+        }
     }
 
     private class SendBlogs extends AsyncTask<String, Void, String> {
