@@ -5,21 +5,23 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.fragment.*;
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 
 /**
  * Created by kaidi on 15-2-2.
  */
-public class AddContentActivity extends SwipeBackActivity {
+public class AddContentActivity extends ActionBarActivity {
 
     private AddBlogFragment addBlogFragment;
     private AddPhotoFragment addPhotoFragment;
@@ -28,42 +30,39 @@ public class AddContentActivity extends SwipeBackActivity {
     private AddMessageFragment addMessageFragment;
     private AddPollFragment addPollFragment;
 
-    private int[] mBgColors;
-
-    private static int mBgIndex = 0;
-
-    private String mKeyTrackingMode;
-
-    private RadioGroup mTrackingModeGroup;
-
-    private SwipeBackLayout mSwipeBackLayout;
+    private Toolbar toolbar;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcontent);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        toolbar.setTitle("Post Blog");
+        setSupportActionBar(toolbar);
+        //Navigation Icon 要設定在 setSupoortActionBar 才有作用否則會出現 back button
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setOnMenuItemClickListener(onMenuItemClick);
 
-        mSwipeBackLayout = getSwipeBackLayout();
-        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
-        mSwipeBackLayout.addSwipeListener(new SwipeBackLayout.SwipeListener() {
-            @Override
-            public void onScrollStateChange(int state, float scrollPercent) {
+        initFragUI();
+    }
 
+    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.action_share:
+                    break;
+                case R.id.action_settings:
+                    break;
+                default:
+                    break;
             }
+            return true;
+        }
+    };
 
-            @Override
-            public void onEdgeTouch(int edgeFlag) {
-            }
-
-            @Override
-            public void onScrollOverThreshold() {
-            }
-        });
-
-
-
-
+    private void initFragUI() {
         FragmentManager fm = getFragmentManager();
         // 开启Fragment事务
         FragmentTransaction transaction = fm.beginTransaction();
@@ -120,5 +119,11 @@ public class AddContentActivity extends SwipeBackActivity {
         // transaction.addToBackStack();
         // 事务提交
         transaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_addcontent, menu);
+        return true;
     }
 }
