@@ -5,7 +5,7 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".AddContentActivity">
 
-    <item android:id="@+id/action_share"
+    <item android:id="@+id/action_send_blog"
           android:title="send"
           android:orderInCategory="90"
           android:icon="@drawable/ic_send_white_24dp"

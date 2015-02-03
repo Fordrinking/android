@@ -31,7 +31,8 @@ public class AddContentActivity extends ActionBarActivity {
     private AddPollFragment addPollFragment;
 
     private Toolbar toolbar;
-    
+
+    private int fragmentID = -1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,8 @@ public class AddContentActivity extends ActionBarActivity {
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
-                case R.id.action_share:
+                case R.id.action_send_blog:
+                    sendBlog(fragmentID);
                     break;
                 case R.id.action_settings:
                     break;
@@ -62,15 +64,46 @@ public class AddContentActivity extends ActionBarActivity {
         }
     };
 
+    private void sendBlog(int viewId) {
+        switch (viewId) {
+            case R.id.new_blog_btn:
+                addBlogFragment.send();
+                break;
+
+            case R.id.new_photo_btn:
+                addPhotoFragment.send();
+                break;
+
+            case R.id.new_sound_btn:
+                addSoundFragment.send();
+                break;
+
+            case R.id.new_video_btn:
+                addVideoFragment.send();
+                break;
+
+            case R.id.new_message_btn:
+                addMessageFragment.send();
+                break;
+
+            case R.id.new_poll_btn:
+                addPollFragment.send();
+                break;
+            case -1:
+                Toast.makeText(this, "Error !", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
     private void initFragUI() {
         FragmentManager fm = getFragmentManager();
         // 开启Fragment事务
         FragmentTransaction transaction = fm.beginTransaction();
 
         Bundle bundle = getIntent().getExtras();
-        int viewId = bundle.getInt("viewID", -1);
+        fragmentID = bundle.getInt("viewID", -1);
 
-        switch (viewId) {
+        switch (fragmentID) {
             case R.id.new_blog_btn:
                 if (addBlogFragment == null) {
                     addBlogFragment = new AddBlogFragment();

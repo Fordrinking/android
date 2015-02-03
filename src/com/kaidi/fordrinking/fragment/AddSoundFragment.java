@@ -10,7 +10,7 @@ import com.kaidi.fordrinking.R;
 /**
  * Created by kaidi on 15-2-2.
  */
-public class AddSoundFragment extends Fragment {
+public class AddSoundFragment extends Fragment implements AddContent {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(
@@ -21,6 +21,11 @@ public class AddSoundFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
+    }
+
+    @Override
+    public void send() {
 
     }
 }
