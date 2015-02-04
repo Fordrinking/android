@@ -2,12 +2,14 @@ package com.kaidi.fordrinking.photopicker;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import com.kaidi.fordrinking.view.SquareImageView;
 
 import java.util.ArrayList;
 
@@ -41,15 +43,15 @@ public class PhotoPickerAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
+        SquareImageView imageView;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
+            imageView = new SquareImageView(mContext);
+            imageView.setBackgroundColor(Color.DKGRAY);
             imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
         } else {
-            imageView = (ImageView) convertView;
+            imageView = (SquareImageView) convertView;
         }
 
         if (mBitmaps[position] == null) {

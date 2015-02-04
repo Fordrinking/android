@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.widget.ImageView;
+import com.kaidi.fordrinking.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,6 +42,7 @@ public class Helper {
             String path =cursor.getString(0);
             list.add(new File(path).getAbsolutePath());
         }
+        list.add(0, "take_photo");
         return list;
     }
 
@@ -86,7 +88,13 @@ public class Helper {
         protected Bitmap doInBackground(String... params) {
             Bitmap bitmap = null;
             try {
-                bitmap = getImageFromPath(Uri.fromFile(new File(params[0])), 300, 300);
+                String url = params[0];
+                if (url.equals("take_photo")) {
+                    bitmap = BitmapFactory.decodeResource(context.getResources(),
+                            R.drawable.ic_camera_big_bg_36dp);
+                } else {
+                    bitmap = getImageFromPath(Uri.fromFile(new File(url)), 300, 300);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
