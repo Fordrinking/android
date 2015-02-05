@@ -1,4 +1,4 @@
-package com.kaidi.fordrinking.view;
+package com.kaidi.fordrinking.photopicker;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -9,4 +9,5 @@
           android:horizontalSpacing="3dp"
           android:stretchMode="columnWidth"
           android:gravity="center"
+          android:listSelector="@drawable/image_item_select"
         />

@@ -102,7 +102,7 @@ public class Helper {
         }
 
         protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
+            //super.onPostExecute(bitmap);
             if (bitmap != null) {
                 callback.run(imageView, bitmap);
             }
