@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/photo_picker_item"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.kaidi.fordrinking.photopicker.SquareImageView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:id="@+id/photo_picker_image"
+               android:src="@drawable/ic_insert_photo_white_36dp"
+               android:scaleType="centerCrop"/>
+    <com.kaidi.fordrinking.photopicker.SquareImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/photo_picker_bg"
+            android:src="@drawable/image_selected_bg"
+            android:visibility="invisible"/>
+    <TextView android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/photo_picker_index"
+              android:layout_gravity="center"
+              android:gravity="center"
+              android:visibility="invisible"
+              android:textSize="32dp"/>
+
+</FrameLayout>
