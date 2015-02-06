@@ -52,6 +52,9 @@ public class PhotoPickerAdapter extends BaseAdapter {
         return position;
     }
 
+    public ArrayList<String> getSelectedURLs() {
+        return selectedURLs;
+    }
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -84,7 +87,7 @@ public class PhotoPickerAdapter extends BaseAdapter {
         if (position == 0) {
             convertView.setOnClickListener(new OpenCameraDealer());
         } else {
-            convertView.setOnClickListener(new ImageItemClicker(holder));
+            convertView.setOnClickListener(new ImageItemClicker(position, holder));
         }
 
         return convertView;
@@ -119,10 +122,11 @@ public class PhotoPickerAdapter extends BaseAdapter {
     }
 
     private class ImageItemClicker implements View.OnClickListener {
-        int position;
-        Holder holder;
+        private int position;
+        private Holder holder;
 
-        public ImageItemClicker(Holder holder) {
+        public ImageItemClicker(int pos, Holder holder) {
+            this.position = pos;
             this.holder = holder;
         }
 
@@ -142,7 +146,7 @@ public class PhotoPickerAdapter extends BaseAdapter {
                         selectHolders.get(i).image_index.setText(String.valueOf(i));
                     }
                 }
-                selectedURLs.remove(selectedURLs.indexOf(selectedURLs.get(position)));
+                selectedURLs.remove(selectHolders.indexOf(holder));
                 selectHolders.remove(selectHolders.indexOf(holder));
                 holder.imageView_bg.setVisibility(View.INVISIBLE);
                 holder.image_index.setVisibility(View.INVISIBLE);

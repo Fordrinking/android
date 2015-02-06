@@ -13,6 +13,7 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.fragment.*;
+import com.kaidi.fordrinking.util.DataShare;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -37,6 +38,7 @@ public class AddContentActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcontent);
+        DataShare.getInstance().save("AddContentActivity", this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         toolbar.setTitle("Post Blog");
