@@ -9,7 +9,7 @@
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:id="@+id/photo_picker_image"
-               android:src="@drawable/ic_insert_photo_white_36dp"
+               android:src="@drawable/ic_photo_36dp"
                android:scaleType="centerCrop"/>
     <com.kaidi.fordrinking.photopicker.SquareImageView
             android:layout_width="match_parent"
