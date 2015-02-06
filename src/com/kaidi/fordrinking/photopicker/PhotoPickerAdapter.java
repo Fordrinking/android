@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.kaidi.fordrinking.R;
 
-import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 
 /**
@@ -54,13 +53,10 @@ public class PhotoPickerAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageHolder layout;
-        SquareImageView imageView;
         Holder holder;
-       // Log.e("photo_picker", "" + position);
-        if (position != index && position > index) {
-       // if (convertView == null) {  // if it's not recycled, initialize some attributes
-            Log.e("photo_picker", "" + position);
+       //Log.e("photo_picker", "" + position);
+        if (position != index && position > index) { // if it's not recycled, initialize some attributes
+            //Log.e("photo_picker", "" + position);
             index = position;
             convertView = LayoutInflater.from(mContext).inflate(R.layout.photopicker_item, null);
             holder = new Holder();
@@ -69,41 +65,20 @@ public class PhotoPickerAdapter extends BaseAdapter {
             holder.image_index = (TextView)convertView.findViewById(R.id.photo_picker_index);
             convertView.setTag(holder);
             mHolders.add(convertView);
-            /*imageView = new SquareImageView(mContext);
-            imageView.setBackgroundColor(Color.CYAN);
-            imageView.setImageResource(R.drawable.ic_insert_photo_white_48dp);
-            imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            layout = new ImageHolder(mContext);
-
-            layout.addView(imageView);*/
         } else {
             holder = (Holder) mHolders.get(position).getTag();
             convertView = mHolders.get(position);
-            /*layout = (ImageHolder)convertView;
-            imageView = (SquareImageView) layout.getChildAt(0);*/
         }
 
-
-
         if (mBitmaps[position] == null) {
-            Log.e("photo_picker_setimage", "null-pos" + position);
+            //Log.e("photo_picker_setimage", "null-pos" + position);
             mHelper.loadImage(holder.imageView, new LoadImageCallBack(position), mData.get(position));
         }
         else
         {
-            Log.e("photo_picker_setimage", "pos" + position);
+            //Log.e("photo_picker_setimage", "pos" + position);
             holder.imageView.setImageBitmap(mBitmaps[position]);
         }
-
-      /*  if (layout.getCheckedState() == 1) {
-           // Log.e("photo_picker_checked", "" + position);
-            layout.setChecked();
-        } else {
-          //  Log.e("photo_picker_un_checked", "" + position);
-            layout.setUnChecked();
-        }*/
         convertView.setOnClickListener(new ImageItemClicker(holder));
         return convertView;
     }
@@ -129,7 +104,6 @@ public class PhotoPickerAdapter extends BaseAdapter {
     }
 
     private class ImageItemClicker implements View.OnClickListener {
-
         int position;
         Holder holder;
 
@@ -159,7 +133,6 @@ public class PhotoPickerAdapter extends BaseAdapter {
                 holder.image_index.setVisibility(View.INVISIBLE);
                 holder.image_index.setText("");
                 holder.state = 0;
-
             }
         }
     }
