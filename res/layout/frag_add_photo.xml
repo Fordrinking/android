@@ -1,11 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="add photo"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg_blue_gray"
+        >
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/add_blog_header"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+        <EditText android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/add_blog_title"
+                  android:textStyle="bold"
+                  android:hint="Title (optional)"/>
+    </RelativeLayout>
 
-</LinearLayout>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/add_blog_header"
+                    android:layout_above="@+id/add_blog_footer"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical">
+            <GridView android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="1"
+                      android:id="@+id/photo_preview_grid_view"
+                      android:numColumns="2"
+                      android:verticalSpacing="3dp"
+                      android:horizontalSpacing="3dp"
+                      android:stretchMode="columnWidth"
+                      android:gravity="center">
+            </GridView>
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="1"
+                      android:id="@+id/add_blog_content"
+                      android:gravity="top"
+                      android:hint="Body"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="56dp"
+                  android:id="@+id/add_blog_footer"
+                  android:layout_alignParentBottom="true"
+                  android:background="@color/header_bar_blue_gray">
+        <ImageButton android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:src="@drawable/ic_location_on_white_24dp"
+                     android:background="@color/transparent"/>
+        <ImageButton android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:background="@color/transparent"
+                     android:src="@drawable/ic_turned_in_white_24dp"
+                />
+        <ImageButton android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:gravity="center"
+                     android:background="@color/transparent"
+                     android:src="@drawable/at_simbol"
+                />
+        <ImageButton android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="1"
+                     android:layout_gravity="center"
+                     android:background="@color/transparent"
+                     android:src="@drawable/ic_tag_faces_white_24dp"/>
+    </LinearLayout>
+</RelativeLayout>

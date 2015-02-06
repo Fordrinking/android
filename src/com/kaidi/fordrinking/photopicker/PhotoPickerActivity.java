@@ -54,6 +54,16 @@ public class PhotoPickerActivity extends Activity {
             }
         }
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Activity addContentActivity =
+                (Activity) DataShare.getInstance().retrieve("AddContentActivity");
+        addContentActivity.finish();
+        finish();
+        super.onBackPressed();  // optional depending on your needs
+    }
 }
 
 

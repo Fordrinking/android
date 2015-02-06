@@ -37,6 +37,7 @@
     <string name="url_newest_blog">http://drink.sinaapp.com/get-blog-client</string>
     <string name="url_post_blog">http://drink.sinaapp.com/post-blog-client</string>
     <string name="url_post_photos">http://drink.sinaapp.com/post-photos-client</string>
+    <!--<string name="url_post_photos">http://fordrinking.com/post-photos-client</string>-->
     <string name="url_post_sound">http://drink.sinaapp.com/post-sound-client</string>
     <string name="url_post_video">http://drink.sinaapp.com/post-video-client</string>
     <string name="url_post_message">http://drink.sinaapp.com/post-message-client</string>
