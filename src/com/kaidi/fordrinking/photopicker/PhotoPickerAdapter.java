@@ -1,6 +1,7 @@
 package com.kaidi.fordrinking.photopicker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.kaidi.fordrinking.R;
 
 import java.util.ArrayList;
@@ -79,7 +81,12 @@ public class PhotoPickerAdapter extends BaseAdapter {
             //Log.e("photo_picker_setimage", "pos" + position);
             holder.imageView.setImageBitmap(mBitmaps[position]);
         }
-        convertView.setOnClickListener(new ImageItemClicker(holder));
+        if (position == 0) {
+            convertView.setOnClickListener(new OpenCameraDealer());
+        } else {
+            convertView.setOnClickListener(new ImageItemClicker(holder));
+        }
+
         return convertView;
     }
 
@@ -100,6 +107,14 @@ public class PhotoPickerAdapter extends BaseAdapter {
         public void run(ImageView imageView, Bitmap bitmap) {
             mBitmaps[index] = bitmap;
             imageView.setImageBitmap(bitmap);
+        }
+    }
+
+    private class OpenCameraDealer implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            mContext. startActivity(intent);
         }
     }
 
