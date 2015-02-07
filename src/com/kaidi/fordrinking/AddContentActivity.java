@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 import com.kaidi.fordrinking.R;
@@ -38,6 +39,7 @@ public class AddContentActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcontent);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         DataShare.getInstance().save("AddContentActivity", this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
