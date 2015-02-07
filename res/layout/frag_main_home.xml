@@ -21,7 +21,6 @@
             </WebView>
         </com.melnykov.fab.ObservableScrollView>
 
-
     </android.support.v4.widget.SwipeRefreshLayout>
 
 

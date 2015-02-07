@@ -1,10 +1,8 @@
 package com.kaidi.fordrinking.fragment;
 
-import android.app.ActivityOptions;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.*;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +12,6 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ScrollView;
-import android.widget.Toast;
 import com.kaidi.fordrinking.AddActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
@@ -24,8 +20,18 @@ import com.kaidi.fordrinking.util.Misc;
 import com.melnykov.fab.FloatingActionButton;
 import com.melnykov.fab.ObservableScrollView;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.kaidi.fordrinking.util.Constants.*;
 
 /**
  * Author: kaidi
@@ -40,6 +46,9 @@ public class HomeFragment extends Fragment {
 
     private String jsonStr;
     private String newPostBlog;
+    private String morePostBlog;
+
+    private int currentBlogIndex;
 
     private Handler handler;
     @Override
@@ -53,6 +62,10 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         activity = (MainActivity) getActivity();
+        DataShare.getInstance().save("HomeFragment", this);
+        DataShare.getInstance().save("isMoreBlogLoaded", false);
+
+        currentBlogIndex = 0;
 
         handler = new Handler() {
             @Override
@@ -118,6 +131,11 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    public void loadMoreBlogs() {
+        Log.e("HomeFragment", "loadMoreBlogs run");
+        new DownloadMoreBlogs().execute(Misc.getHttpURL(activity, R.string.url_more_blog));
+    }
+
     private class SwipeLayoutListener implements SwipeRefreshLayout.OnRefreshListener {
 
         @Override
@@ -161,6 +179,26 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private class DownloadMoreBlogs extends AsyncTask<String, Void, Void> {
+        protected Void doInBackground(String... urlStr) {
+            try {
+                HttpPost httpPost = new HttpPost(urlStr[0]);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("blogIndex", String.valueOf(currentBlogIndex)));
+                httpPost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+                HttpResponse httpResponse = activity.getHttpClient().execute(httpPost);
+                if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                    morePostBlog = EntityUtils.toString(httpResponse.getEntity());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        protected void onPostExecute(Void v) {
+            blogWebView.loadUrl("javascript:appinterface.addMorePostBlog()");
+        }
+    }
 
 
 
@@ -175,14 +213,28 @@ public class HomeFragment extends Fragment {
     }
 
     @JavascriptInterface
+    public String getMorePostBlog() {
+        return morePostBlog;
+    }
+
+    @JavascriptInterface
+    public void setLoadMoreBlogState() {
+        DataShare.getInstance().save("isMoreBlogLoaded", false);
+        currentBlogIndex += MORE_BLOG_NUMS;
+    }
+
+    @JavascriptInterface
     public void sendRefreshStopCode() {
         handler.sendEmptyMessage(0x123);
+        currentBlogIndex = 0;
+        currentBlogIndex += MORE_BLOG_NUMS;
     }
 
     @JavascriptInterface
     public void clearNewPostBlog() {
         newPostBlog = "";
         DataShare.getInstance().save("newPostBlog", newPostBlog);
+        currentBlogIndex += 1;
     }
 
     public SwipeRefreshLayout getSwipeLayout() {

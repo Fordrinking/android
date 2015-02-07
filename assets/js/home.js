@@ -35,11 +35,18 @@ var appinterface = {
     },
 
     addNewPostBlog: function () {
-        console.log("test");
         var newBlog = HomeFragment.getNewPostBlog();
-        console.log(newBlog);
     	$(".blogs").prepend($(newBlog));
     	HomeFragment.clearNewPostBlog();
+    },
+    addMorePostBlog: function () {
+        var moreBlog = HomeFragment.getMorePostBlog();
+        $(".blogs").append($(moreBlog));
+        HomeFragment.setLoadMoreBlogState();
     }
+
+
 };
+
+
 

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.kaidi.fordrinking.fragment.*;
 import com.kaidi.fordrinking.model.User;
 import com.kaidi.fordrinking.model.UserManager;
+import com.kaidi.fordrinking.util.DataShare;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DataShare.getInstance().save("MainActivity", this);
 
         initUI();
         registerEvent();

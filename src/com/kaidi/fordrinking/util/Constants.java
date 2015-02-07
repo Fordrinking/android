@@ -11,6 +11,8 @@ public class Constants {
         return "haha";
     }
 
+    public static final int MORE_BLOG_NUMS         = 5;
+
     public static final int DRAWER_OPEN_STATE      = 0;
     public static final int DRAWER_LOGIN_STATE     = 1;
     public static final int DRAWER_SIGNUP_STATE    = 2;
