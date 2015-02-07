@@ -8,11 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.kaidi.fordrinking.R;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * Author: kaidi
@@ -20,6 +18,14 @@ import java.io.OutputStream;
  */
 public class Misc {
     private static final String TAG = "Misc: ";
+
+    public static String getHttpURL(Context context, int urlid) {
+        if (context.getString(R.string.app_state).equals("local_testing")) {
+            return context.getString(R.string.url_origin_local) + context.getString(urlid);
+        } else {
+            return context.getString(R.string.url_origin) + context.getString(urlid);
+        }
+    }
 
     public static void setTextViewTypeface(ViewGroup viewGroup, Typeface typeface)
     {
@@ -39,7 +45,7 @@ public class Misc {
         }
     }
 
-    public static void compressImage(Context context, String path)
+    public static byte[] compressImage(String path)
             throws IOException
     {
         BitmapFactory.Options op = new BitmapFactory.Options();
@@ -55,9 +61,8 @@ public class Misc {
         op.inJustDecodeBounds = false;
         Bitmap bitmap = BitmapFactory.decodeFile(path, op);
 
-        OutputStream outputStream = context.openFileOutput("tmp_upload.jpg", Context.MODE_PRIVATE);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outputStream); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
-        outputStream.flush();
-        outputStream.close(); // do not forget to close the stream
+        ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayInputStream); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+        return byteArrayInputStream.toByteArray();
     }
 }

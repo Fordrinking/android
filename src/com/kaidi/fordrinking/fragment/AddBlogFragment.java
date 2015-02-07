@@ -17,6 +17,7 @@ import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.model.User;
 import com.kaidi.fordrinking.model.UserManager;
 import com.kaidi.fordrinking.util.DataShare;
+import com.kaidi.fordrinking.util.Misc;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -67,7 +68,7 @@ public class AddBlogFragment extends Fragment implements AddContent {
                     })
                     .show();
         } else {
-            new SendBlogs().execute(getResources().getString(R.string.url_post_blog));
+            new SendBlogs().execute(Misc.getHttpURL(activity, R.string.url_post_blog));
         }
     }
 

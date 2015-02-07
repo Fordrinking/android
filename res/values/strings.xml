@@ -8,6 +8,11 @@
         <item>@color/green</item>
     </integer-array>
 
+    <string name="app_state_local">local_testing</string>
+    <string name="app_state_online">online_run</string>
+
+    <string name="app_state">@string/app_state_online</string>
+
     <string name="app_name">Fordrinking</string>
     <string name="toolbar_title">Toolbar with Navigation Drawer</string>
     <string name="drawer_open">Open navigation drawer</string>
@@ -32,16 +37,18 @@
     <string name="icon_comment">&#xf0e5;</string>
     <string name="icon_like">&#xf087;</string>
 
-    <string name="url_signup">http://drink.sinaapp.com/signup-client</string>
-    <string name="url_login">http://drink.sinaapp.com/login-client</string>
-    <string name="url_newest_blog">http://drink.sinaapp.com/get-blog-client</string>
-    <string name="url_post_blog">http://drink.sinaapp.com/post-blog-client</string>
-    <string name="url_post_photos">http://drink.sinaapp.com/post-photos-client</string>
-    <!--<string name="url_post_photos">http://fordrinking.com/post-photos-client</string>-->
-    <string name="url_post_sound">http://drink.sinaapp.com/post-sound-client</string>
-    <string name="url_post_video">http://drink.sinaapp.com/post-video-client</string>
-    <string name="url_post_message">http://drink.sinaapp.com/post-message-client</string>
-    <string name="url_post_poll">http://drink.sinaapp.com/post-poll-client</string>
+    <string name="url_origin">http://drink.sinaapp.com</string>
+    <string name="url_origin_local">http://fordrinking.com</string>
+
+    <string name="url_signup">/signup-client</string>
+    <string name="url_login">/login-client</string>
+    <string name="url_newest_blog">/get-blog-client</string>
+    <string name="url_post_blog">/post-blog-client</string>
+    <string name="url_post_photos">/post-photos-client</string>
+    <string name="url_post_sound">/post-sound-client</string>
+    <string name="url_post_video">/post-video-client</string>
+    <string name="url_post_message">/post-message-client</string>
+    <string name="url_post_poll">/post-poll-client</string>
 
     <string name="share_preference_file">com.kaidi.fordrinking.SharePreference</string>
     <string name="share_pref_init_state">init-state</string>

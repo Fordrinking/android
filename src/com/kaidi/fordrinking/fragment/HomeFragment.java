@@ -20,6 +20,7 @@ import com.kaidi.fordrinking.AddActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.util.DataShare;
+import com.kaidi.fordrinking.util.Misc;
 import com.melnykov.fab.FloatingActionButton;
 import com.melnykov.fab.ObservableScrollView;
 import org.apache.http.HttpResponse;
@@ -105,7 +106,7 @@ public class HomeFragment extends Fragment {
         });
 
 
-        new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
+        new DownloadNewestBlogs().execute(Misc.getHttpURL(activity, R.string.url_newest_blog));
     }
 
     @Override
@@ -121,7 +122,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onRefresh() {
-            new DownloadNewestBlogs().execute(getString(R.string.url_newest_blog));
+            new DownloadNewestBlogs().execute(Misc.getHttpURL(activity, R.string.url_newest_blog));
 
             swipeLayout.setRefreshing(true);
             (new Handler()).postDelayed(new Runnable() {

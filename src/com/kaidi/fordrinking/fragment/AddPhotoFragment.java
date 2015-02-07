@@ -1,6 +1,7 @@
 package com.kaidi.fordrinking.fragment;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.app.backup.FileBackupHelper;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,10 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.*;
 import com.kaidi.fordrinking.AddContentActivity;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.model.UserManager;
@@ -25,9 +23,6 @@ import com.kaidi.fordrinking.photopicker.PhotoPreviewAdapter;
 import com.kaidi.fordrinking.util.DataShare;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import com.kaidi.fordrinking.util.Misc;
@@ -37,8 +32,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.util.EntityUtils;
 
@@ -89,18 +83,24 @@ public class AddPhotoFragment extends Fragment implements AddContent {
             return;
         }
         new UploadPhotosTask(activity.getHttpClient(),
-                selectedURLs).execute(getString(R.string.url_post_photos));
+                selectedURLs).execute(Misc.getHttpURL(activity, R.string.url_post_photos));
     }
 
-    @SuppressWarnings("deprecation")
+
     private class UploadPhotosTask extends AsyncTask<String, Void, Void> {
 
         HttpClient httpClient;
         ArrayList<String> paths;
+        ProgressDialog dialog;
 
         public UploadPhotosTask(HttpClient httpClient, ArrayList<String> paths) {
             this.httpClient = httpClient;
             this.paths = paths;
+            dialog = new ProgressDialog(activity);
+            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            dialog.setMessage("Uploading photo, please wait.");
+            dialog.setMax(100);
+            dialog.setCancelable(true);
         }
         protected Void doInBackground(String... params) {
             try {
@@ -110,10 +110,12 @@ public class AddPhotoFragment extends Fragment implements AddContent {
                 MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
                 multipartEntity.addPart("uid", new StringBody(uid.trim()));
                 for (int i = 0; i < paths.size(); i++) {
-                    Misc.compressImage(activity, paths.get(i));
-                    File file = new File(activity.getFilesDir().toString() + "/tmp_upload.jpg");
-                    FileBody fileBody = new FileBody(file);
-                    multipartEntity.addPart("photo" + i, fileBody);
+                    String[] arrs = paths.get(i).split("/");
+                    String filename = arrs[arrs.length - 1];
+                    byte[] imageBytes = Misc.compressImage(paths.get(i));
+                    ByteArrayBody byteArrayBody = new ByteArrayBody(imageBytes,
+                            "multipart/form-data", filename);
+                    multipartEntity.addPart("photo" + i, byteArrayBody);
                 }
                 httpPost.setEntity(multipartEntity);
                 HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -127,8 +129,24 @@ public class AddPhotoFragment extends Fragment implements AddContent {
             return null;
         }
 
-        protected void onPostExecute(Void v) {
+        @Override
+        protected void onPreExecute() {
+            dialog.show();
+            //dialog.setOnDismissListener();
+        }
 
+
+
+        @Override
+        protected void onPostExecute(Void v){
+            try {
+                // prevents crash in rare case where activity finishes before dialog
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

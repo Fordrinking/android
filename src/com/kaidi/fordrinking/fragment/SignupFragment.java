@@ -25,6 +25,7 @@ import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.model.User;
 import com.kaidi.fordrinking.model.UserManager;
 import com.kaidi.fordrinking.util.JsonUtil;
+import com.kaidi.fordrinking.util.Misc;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -204,7 +205,7 @@ public class SignupFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        HttpPost httpPost = new HttpPost(activity.getResources().getString(R.string.url_signup));
+                        HttpPost httpPost = new HttpPost(Misc.getHttpURL(activity, R.string.url_signup));
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("email", email));
                         params.add(new BasicNameValuePair("username", username));

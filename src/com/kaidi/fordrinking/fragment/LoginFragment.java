@@ -22,6 +22,7 @@ import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.model.User;
 import com.kaidi.fordrinking.model.UserManager;
 import com.kaidi.fordrinking.util.JsonUtil;
+import com.kaidi.fordrinking.util.Misc;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -140,7 +141,7 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        HttpPost httpPost = new HttpPost(activity.getResources().getString(R.string.url_login));
+                        HttpPost httpPost = new HttpPost(Misc.getHttpURL(activity, R.string.url_login));
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("loginMail", email));
                         params.add(new BasicNameValuePair("loginPass", password));
