@@ -67,6 +67,7 @@ body {
 
 .blog-img {
 	max-width: 100%;
+	box-shadow: 0px 2px 3px #37474F;
 }
 
 .blog-body iframe {
