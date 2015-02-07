@@ -2,11 +2,7 @@ package com.kaidi.fordrinking.fragment;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.app.backup.FileBackupHelper;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,12 +13,11 @@ import android.widget.*;
 import com.kaidi.fordrinking.AddContentActivity;
 import com.kaidi.fordrinking.R;
 import com.kaidi.fordrinking.model.UserManager;
-import com.kaidi.fordrinking.photopicker.ImageCallback;
 import com.kaidi.fordrinking.photopicker.PhotoPickerActivity;
 import com.kaidi.fordrinking.photopicker.PhotoPreviewAdapter;
+import com.kaidi.fordrinking.util.AndroidMultiPartEntity;
 import com.kaidi.fordrinking.util.DataShare;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import com.kaidi.fordrinking.util.Misc;
@@ -31,7 +26,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.util.EntityUtils;
@@ -42,6 +36,7 @@ import org.apache.http.util.EntityUtils;
 public class AddPhotoFragment extends Fragment implements AddContent {
     private AddContentActivity activity;
     private ArrayList<String> selectedURLs;
+    private long entitySize = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(
@@ -87,7 +82,7 @@ public class AddPhotoFragment extends Fragment implements AddContent {
     }
 
 
-    private class UploadPhotosTask extends AsyncTask<String, Void, Void> {
+    private class UploadPhotosTask extends AsyncTask<String, Integer, String> {
 
         HttpClient httpClient;
         ArrayList<String> paths;
@@ -98,16 +93,25 @@ public class AddPhotoFragment extends Fragment implements AddContent {
             this.paths = paths;
             dialog = new ProgressDialog(activity);
             dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            dialog.setMessage("Uploading photo, please wait.");
+            dialog.setMessage("Sending 0%, please wait");
             dialog.setMax(100);
             dialog.setCancelable(true);
         }
-        protected Void doInBackground(String... params) {
+
+        @Override
+        protected String doInBackground(String... params) {
             try {
                 String uid     = String.valueOf(UserManager.getCurrentUser(activity).getUid());
 
                 HttpPost httpPost = new HttpPost(params[0]);
-                MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+                AndroidMultiPartEntity multipartEntity =
+                        new AndroidMultiPartEntity(HttpMultipartMode.BROWSER_COMPATIBLE,
+                                new AndroidMultiPartEntity.ProgressListener() {
+                            @Override
+                            public void transferred(long num) {
+                                publishProgress((int) ((num / (float) entitySize) * 100));
+                            }
+                        });
                 multipartEntity.addPart("uid", new StringBody(uid.trim()));
                 for (int i = 0; i < paths.size(); i++) {
                     String[] arrs = paths.get(i).split("/");
@@ -117,11 +121,14 @@ public class AddPhotoFragment extends Fragment implements AddContent {
                             "multipart/form-data", filename);
                     multipartEntity.addPart("photo" + i, byteArrayBody);
                 }
+                entitySize = multipartEntity.getContentLength();
                 httpPost.setEntity(multipartEntity);
                 HttpResponse httpResponse = httpClient.execute(httpPost);
+                if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                    //Log.e("http-response", EntityUtils.toString(httpEntity));
+                    return EntityUtils.toString(httpResponse.getEntity());
+                }
 
-                HttpEntity httpEntity = httpResponse.getEntity();
-                Log.e("http-response", EntityUtils.toString(httpEntity));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -135,15 +142,22 @@ public class AddPhotoFragment extends Fragment implements AddContent {
             //dialog.setOnDismissListener();
         }
 
-
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            dialog.setProgress(progress[0]);
+            dialog.setMessage("Sending " + String.valueOf(progress[0]) + "%, please wait.");
+        }
 
         @Override
-        protected void onPostExecute(Void v){
+        protected void onPostExecute(String msg){
             try {
                 // prevents crash in rare case where activity finishes before dialog
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
+                DataShare.getInstance().save("newPostBlog", msg);
+                activity.finish();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

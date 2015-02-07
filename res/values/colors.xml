@@ -56,4 +56,5 @@
     <color name="green">#FF34A350</color>
 
     <color name="transparent">#00000000</color>
+    <color name="translucent_title">#64b5c8d3</color>
 </resources>
