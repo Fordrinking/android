@@ -11,9 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import com.kaidi.fordrinking.fragment.ExploreFragment;
-import com.kaidi.fordrinking.fragment.LoginFragment;
-import com.kaidi.fordrinking.fragment.SignupFragment;
+import com.kaidi.fordrinking.fragment.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -30,7 +28,11 @@ public class AuthActivity extends ActionBarActivity {
 
     private LoginFragment loginFragment;
     private SignupFragment signupFragment;
-    private ExploreFragment exporeFragment;
+    private ExploreFragment exploreFragment;
+
+    private HelpFragment helpFragment;
+    private SettingFragment settingFragment;
+    private FeedbackFragment feedbackFragment;
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -67,8 +69,8 @@ public class AuthActivity extends ActionBarActivity {
     private void setDefaultFragment() {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        exporeFragment = new ExploreFragment();
-        transaction.replace(R.id.auth_content, exporeFragment);
+        exploreFragment = new ExploreFragment();
+        transaction.replace(R.id.auth_content, exploreFragment);
         transaction.commit();
     }
 
@@ -164,12 +166,36 @@ public class AuthActivity extends ActionBarActivity {
         this.signupFragment = signupFragment;
     }
 
-    public ExploreFragment getExporeFragment() {
-        return exporeFragment;
+    public ExploreFragment getExploreFragment() {
+        return exploreFragment;
     }
 
-    public void setExporeFragment(ExploreFragment exporeFragment) {
-        this.exporeFragment = exporeFragment;
+    public void setExploreFragment(ExploreFragment exporeFragment) {
+        this.exploreFragment = exporeFragment;
+    }
+
+    public HelpFragment getHelpFragment() {
+        return helpFragment;
+    }
+
+    public void setHelpFragment(HelpFragment helpFragment) {
+        this.helpFragment = helpFragment;
+    }
+
+    public SettingFragment getSettingFragment() {
+        return settingFragment;
+    }
+
+    public void setSettingFragment(SettingFragment settingFragment) {
+        this.settingFragment = settingFragment;
+    }
+
+    public FeedbackFragment getFeedbackFragment() {
+        return feedbackFragment;
+    }
+
+    public void setFeedbackFragment(FeedbackFragment feedbackFragment) {
+        this.feedbackFragment = feedbackFragment;
     }
 
     public int getDrawerTabState() {

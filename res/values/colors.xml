@@ -5,6 +5,8 @@
     <color name="header_bar_blue_gray">#263238</color>
     <color name="main_bg_blue_gray">#37474F</color>
 
+    <color name="drawer_btn_pressed_bg">#ff43565e</color>
+
     <color name="material_blue_500">#5677fc</color>
     <color name="material_blue_600">#4e6cef</color>
 

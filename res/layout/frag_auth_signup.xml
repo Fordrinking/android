@@ -27,6 +27,8 @@
                   android:textColor="#222222"
                   android:padding="15dp"
                   android:layout_marginBottom="1dp"
+                  android:cursorVisible="true"
+                  android:textCursorDrawable="@drawable/edit_cursor"
                   android:hint="Email"
                   android:textColorHint="#ff8f8f8f"/>
         <EditText android:layout_width="300dp"
@@ -38,6 +40,8 @@
                   android:textColor="#222222"
                   android:padding="15dp"
                   android:layout_marginBottom="1dp"
+                  android:cursorVisible="true"
+                  android:textCursorDrawable="@drawable/edit_cursor"
                   android:hint="Username"
                   android:textColorHint="#ff8f8f8f"/>
         <EditText android:layout_width="300dp"
@@ -49,6 +53,8 @@
                   android:textColor="#222222"
                   android:padding="15dp"
                   android:layout_marginBottom="1dp"
+                  android:cursorVisible="true"
+                  android:textCursorDrawable="@drawable/edit_cursor"
                   android:hint="Password"
                   android:textColorHint="#ff8f8f8f"/>
 
