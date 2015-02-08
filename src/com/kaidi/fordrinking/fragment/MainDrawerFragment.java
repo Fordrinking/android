@@ -186,6 +186,12 @@ public class MainDrawerFragment extends Fragment {
             editor.putInt(getResources().getString(R.string.share_pref_curr_uid), -1);
             editor.apply();
 
+            String avatarPath = getActivity().getFilesDir().toString() + "/avatar.png";
+            File file = new File(avatarPath);
+            if (file.delete()) {
+                Log.e("Logout: ", "Delete User Avatar");
+            }
+
             Intent intent = new Intent(getActivity(), AuthActivity.class);
             startActivity(intent);
             getActivity().finish();
