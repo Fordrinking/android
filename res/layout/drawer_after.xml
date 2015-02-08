@@ -35,7 +35,7 @@
                 android:orientation="horizontal"
                 android:id="@+id/main_home_item"
                 android:padding="12dp"
-                android:background="#ff43565e">
+                android:background="@drawable/btn_drawer_item_bg">
             <com.kaidi.fordrinking.view.IconFontView
                     android:layout_width="54dp"
                     android:layout_height="match_parent"
@@ -57,7 +57,8 @@
                 android:layout_height="54dp"
                 android:orientation="horizontal"
                 android:id="@+id/main_explore_item"
-                android:padding="12dp">
+                android:padding="12dp"
+                android:background="@drawable/btn_drawer_item_bg">
             <com.kaidi.fordrinking.view.IconFontView
                     android:layout_width="54dp"
                     android:layout_height="match_parent"
@@ -77,7 +78,8 @@
                 android:layout_height="54dp"
                 android:orientation="horizontal"
                 android:id="@+id/main_message_item"
-                android:padding="12dp">
+                android:padding="12dp"
+                android:background="@drawable/btn_drawer_item_bg">
             <com.kaidi.fordrinking.view.IconFontView
                     android:layout_width="54dp"
                     android:layout_height="match_parent"
@@ -97,7 +99,8 @@
                 android:layout_height="54dp"
                 android:orientation="horizontal"
                 android:id="@+id/main_logout_item"
-                android:padding="12dp">
+                android:padding="12dp"
+                android:background="@drawable/btn_drawer_item_bg">
             <com.kaidi.fordrinking.view.IconFontView
                     android:layout_width="54dp"
                     android:layout_height="match_parent"

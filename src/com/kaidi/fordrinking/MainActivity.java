@@ -36,6 +36,10 @@ public class MainActivity extends ActionBarActivity {
     private ExploreFragment exporeFragment;
     private MessageFragment messageFragment;
 
+    private HelpFragment helpFragment;
+    private SettingFragment settingFragment;
+    private FeedbackFragment feedbackFragment;
+
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -185,6 +189,30 @@ public class MainActivity extends ActionBarActivity {
 
     public void setMessageFragment(MessageFragment messageFragment) {
         this.messageFragment = messageFragment;
+    }
+
+    public HelpFragment getHelpFragment() {
+        return helpFragment;
+    }
+
+    public void setHelpFragment(HelpFragment helpFragment) {
+        this.helpFragment = helpFragment;
+    }
+
+    public SettingFragment getSettingFragment() {
+        return settingFragment;
+    }
+
+    public void setSettingFragment(SettingFragment settingFragment) {
+        this.settingFragment = settingFragment;
+    }
+
+    public FeedbackFragment getFeedbackFragment() {
+        return feedbackFragment;
+    }
+
+    public void setFeedbackFragment(FeedbackFragment feedbackFragment) {
+        this.feedbackFragment = feedbackFragment;
     }
 
     public DrawerLayout getDrawerLayout() {

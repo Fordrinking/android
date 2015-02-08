@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.kaidi.fordrinking.AuthActivity;
 import com.kaidi.fordrinking.MainActivity;
 import com.kaidi.fordrinking.R;
@@ -40,6 +39,9 @@ public class MainDrawerFragment extends Fragment {
     private LinearLayout messageItem;
     private LinearLayout exploreItem;
     private LinearLayout logoutItem;
+    private LinearLayout helpItem;
+    private LinearLayout settingItem;
+    private LinearLayout feedbackItem;
 
     private ImageView avatarImageView;
     private TextView  usernameView;
@@ -62,13 +64,22 @@ public class MainDrawerFragment extends Fragment {
         messageItem = (LinearLayout) getActivity().findViewById(R.id.main_message_item);
         exploreItem = (LinearLayout) getActivity().findViewById(R.id.main_explore_item);
         logoutItem = (LinearLayout) getActivity().findViewById(R.id.main_logout_item);
+        helpItem     = (LinearLayout) getActivity().findViewById(R.id.drawer_help);
+        settingItem  = (LinearLayout) getActivity().findViewById(R.id.drawer_settings);
+        feedbackItem = (LinearLayout) getActivity().findViewById(R.id.drawer_feedback);
 
-        homeItem.setOnClickListener(new MainItemClickListener());
-        messageItem.setOnClickListener(new MainItemClickListener());
-        exploreItem.setOnClickListener(new MainItemClickListener());
+        MainItemClickListener mainItemClickListener = new MainItemClickListener();
+
+        homeItem.setOnClickListener(mainItemClickListener);
+        messageItem.setOnClickListener(mainItemClickListener);
+        exploreItem.setOnClickListener(mainItemClickListener);
+        helpItem.setOnClickListener(mainItemClickListener);
+        settingItem.setOnClickListener(mainItemClickListener);
+        feedbackItem.setOnClickListener(mainItemClickListener);
 
         logoutItem.setOnClickListener(new LogoutItemClickListener());
 
+        homeItem.setActivated(true);
         ShowUserInfo();
     }
 
@@ -130,13 +141,23 @@ public class MainDrawerFragment extends Fragment {
 
     private class MainItemClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View vew) {
+        public void onClick(View view) {
+            homeItem.setActivated(false);
+            messageItem.setActivated(false);
+            exploreItem.setActivated(false);
+            logoutItem.setActivated(false);
+            helpItem.setActivated(false);
+            settingItem.setActivated(false);
+            feedbackItem.setActivated(false);
+
+            view.setActivated(!view.isActivated());
+
             FragmentManager fm = getFragmentManager();
             // 开启Fragment事务
             FragmentTransaction transaction = fm.beginTransaction();
             activity = (MainActivity) getActivity();
 
-            switch (vew.getId()) {
+            switch (view.getId()) {
                 case R.id.main_home_item:
                     if (activity.getHomeFragment() == null) {
                         HomeFragment homeFragment = new HomeFragment();
@@ -165,6 +186,36 @@ public class MainDrawerFragment extends Fragment {
                     transaction.replace(R.id.main_content, activity.getExporeFragment());
                     activity.getDrawerLayout().closeDrawer(Gravity.START);
                     activity.setDrawerTabState(DRAWER_EXPLORE_STATE);
+                    break;
+
+                case R.id.drawer_help:
+                    if (activity.getHelpFragment() == null) {
+                        HelpFragment helpFragment = new HelpFragment();
+                        activity.setHelpFragment(helpFragment);
+                    }
+                    transaction.replace(R.id.main_content, activity.getHelpFragment());
+                    activity.getDrawerLayout().closeDrawer(Gravity.START);
+                    activity.setDrawerTabState(DRAWER_HELP_STATE);
+                    break;
+
+                case R.id.drawer_settings:
+                    if (activity.getSettingFragment() == null) {
+                        SettingFragment settingFragment = new SettingFragment();
+                        activity.setSettingFragment(settingFragment);
+                    }
+                    transaction.replace(R.id.main_content, activity.getSettingFragment());
+                    activity.getDrawerLayout().closeDrawer(Gravity.START);
+                    activity.setDrawerTabState(DRAWER_SETTTINGS_STATE);
+                    break;
+
+                case R.id.drawer_feedback:
+                    if (activity.getFeedbackFragment() == null) {
+                        FeedbackFragment feedbackFragment = new FeedbackFragment();
+                        activity.setFeedbackFragment(feedbackFragment);
+                    }
+                    transaction.replace(R.id.main_content, activity.getFeedbackFragment());
+                    activity.getDrawerLayout().closeDrawer(Gravity.START);
+                    activity.setDrawerTabState(DRAWER_FEEDBACK_STATE);
                     break;
             }
             // transaction.addToBackStack();
