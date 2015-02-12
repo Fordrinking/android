@@ -45,7 +45,7 @@ public class Misc {
         }
     }
 
-    public static byte[] compressImage(String path)
+    public static byte[] compressImage(String path, float des_w)
             throws IOException
     {
         BitmapFactory.Options op = new BitmapFactory.Options();
@@ -53,13 +53,23 @@ public class Misc {
 
         BitmapFactory.decodeFile(path, op);
 
-        int wRatio = (int) Math.ceil(op.outWidth / 540.0);
+        float wRatio = op.outWidth / des_w;
 
+        Log.e("compress image: ", String.valueOf(wRatio));
+
+        int width;
+        int height;
         if (wRatio > 1) {
-            op.inSampleSize = wRatio;
+            width  = (int) Math.ceil(op.outWidth  / wRatio);
+            height = (int) Math.ceil(op.outHeight / wRatio);
+        } else {
+            width = op.outWidth;
+            height = op.outHeight;
         }
+        Log.e("after compress: ", String.valueOf(width) + ", " + String.valueOf(height));
         op.inJustDecodeBounds = false;
         Bitmap bitmap = BitmapFactory.decodeFile(path, op);
+        bitmap = Bitmap.createScaledBitmap(bitmap, width, height, true);
 
         ByteArrayOutputStream byteArrayInputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayInputStream); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate

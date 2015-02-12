@@ -116,7 +116,7 @@ public class AddPhotoFragment extends Fragment implements AddContent {
                 for (int i = 0; i < paths.size(); i++) {
                     String[] arrs = paths.get(i).split("/");
                     String filename = arrs[arrs.length - 1];
-                    byte[] imageBytes = Misc.compressImage(paths.get(i));
+                    byte[] imageBytes = Misc.compressImage(paths.get(i), 720.0f);
                     ByteArrayBody byteArrayBody = new ByteArrayBody(imageBytes,
                             "multipart/form-data", filename);
                     multipartEntity.addPart("photo" + i, byteArrayBody);
